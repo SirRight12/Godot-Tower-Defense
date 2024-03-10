@@ -1,0 +1,27 @@
+[gd_scene load_steps=3 format=3 uid="uid://bc2nx44jw4f0n"]
+
+[ext_resource type="Script" path="res://GameMode.gd" id="1_t8o8a"]
+[ext_resource type="Script" path="res://Wave.gd" id="2_yhfk2"]
+
+[node name="Easy" type="Node"]
+script = ExtResource("1_t8o8a")
+
+[node name="wave_1" type="Node" parent="."]
+script = ExtResource("2_yhfk2")
+enemies = Array[int]([0, 0, 0, 0, 0, 0, 0])
+times = Array[int]([0, 1000, 1000, 1000, 1000, 1000, 1000])
+
+[node name="wave_2" type="Node" parent="."]
+script = ExtResource("2_yhfk2")
+enemies = Array[int]([0, 0, 0, 0, 0, 0, 0, 0, 0, 0])
+times = Array[int]([0, 500, 500, 500, 500, 500, 500, 500, 500, 500])
+
+[node name="wave_3" type="Node" parent="."]
+script = ExtResource("2_yhfk2")
+enemies = Array[int]([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0])
+times = Array[int]([0, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500])
+
+[node name="wave_4" type="Node" parent="."]
+script = ExtResource("2_yhfk2")
+enemies = Array[int]([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0])
+times = Array[int]([0, 500, 500, 500, 500, 500, 500, 500, 500, 500, 1000, 500, 500, 500, 500, 500, 500, 500, 500, 500])

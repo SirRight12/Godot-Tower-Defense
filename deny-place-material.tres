@@ -1,0 +1,12 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://bjstrrm2wvbe1"]
+
+[ext_resource type="Texture2D" uid="uid://dx21vudca0agf" path="res://line.svg" id="1_5fgyn"]
+
+[resource]
+transparency = 1
+albedo_color = Color(1, 1, 1, 0.592157)
+albedo_texture = ExtResource("1_5fgyn")
+albedo_texture_msdf = true
+emission_enabled = true
+emission = Color(1, 1, 1, 1)
+refraction_scale = 1.0

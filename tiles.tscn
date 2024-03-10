@@ -1,0 +1,44 @@
+[gd_scene load_steps=9 format=3 uid="uid://c5ceuiqqi8iox"]
+
+[ext_resource type="Texture2D" uid="uid://3h1tyw07gngt" path="res://grass.jpeg" id="1_bbmxl"]
+[ext_resource type="Texture2D" uid="uid://co3duuwgwg767" path="res://dirt.jpeg" id="2_86uyi"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5dwnw"]
+albedo_color = Color(0, 0.419608, 0, 1)
+albedo_texture = ExtResource("1_bbmxl")
+
+[sub_resource type="BoxMesh" id="BoxMesh_hyrqg"]
+material = SubResource("StandardMaterial3D_5dwnw")
+size = Vector3(1, 0.15, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_wvbqw"]
+size = Vector3(1, 0.15, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_abiu2"]
+albedo_color = Color(0.376471, 0.25098, 0, 1)
+albedo_texture = ExtResource("2_86uyi")
+
+[sub_resource type="BoxMesh" id="BoxMesh_ilv1p"]
+material = SubResource("StandardMaterial3D_abiu2")
+size = Vector3(1, 0.15, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_n4sem"]
+size = Vector3(1, 0.15, 1)
+
+[node name="tiles" type="Node3D"]
+
+[node name="Grass" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_hyrqg")
+
+[node name="Grass" type="StaticBody3D" parent="Grass"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Grass/Grass"]
+shape = SubResource("BoxShape3D_wvbqw")
+
+[node name="Dirt" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_ilv1p")
+
+[node name="Path" type="StaticBody3D" parent="Dirt"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Dirt/Path"]
+shape = SubResource("BoxShape3D_n4sem")

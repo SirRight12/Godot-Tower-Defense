@@ -1,0 +1,77 @@
+[gd_scene load_steps=10 format=3 uid="uid://bhug5g0ojavct"]
+
+[ext_resource type="Script" path="res://DamageTower.gd" id="1_dvomr"]
+[ext_resource type="Script" path="res://Range.gd" id="2_xxsb7"]
+[ext_resource type="Material" uid="uid://bjstrrm2wvbe1" path="res://deny-place-material.tres" id="3_srwwu"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_p1bai"]
+albedo_color = Color(1, 1, 0, 1)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_mqbjm"]
+material = SubResource("StandardMaterial3D_p1bai")
+radius = 0.125
+height = 0.5
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_nyyw0"]
+height = 0.001
+radius = 3.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6hhwj"]
+transparency = 1
+albedo_color = Color(1, 1, 1, 0.768627)
+emission_enabled = true
+emission = Color(1, 1, 1, 1)
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_lk405"]
+height = 0.001
+radius = 0.25
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_palw3"]
+material = ExtResource("3_srwwu")
+top_radius = 0.25
+bottom_radius = 0.25
+height = 0.001
+
+[node name="DamageTower" type="Node3D"]
+script = ExtResource("1_dvomr")
+
+[node name="Node3D" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Node3D"]
+mesh = SubResource("CapsuleMesh_mqbjm")
+
+[node name="Range" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.01, 0)
+script = ExtResource("2_xxsb7")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Range"]
+shape = SubResource("CylinderShape3D_nyyw0")
+
+[node name="CSGCombiner3D" type="CSGCombiner3D" parent="Range"]
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="Range/CSGCombiner3D"]
+cast_shadow = 0
+radius = 3.0
+height = 0.001
+sides = 64
+material = SubResource("StandardMaterial3D_6hhwj")
+
+[node name="CSGCylinder3D2" type="CSGCylinder3D" parent="Range/CSGCombiner3D"]
+cast_shadow = 0
+operation = 2
+radius = 2.9
+height = 0.001
+sides = 64
+material = SubResource("StandardMaterial3D_6hhwj")
+
+[node name="DenyPlace" type="Area3D" parent="."]
+collision_layer = 4
+collision_mask = 4
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="DenyPlace"]
+shape = SubResource("CylinderShape3D_lk405")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="DenyPlace"]
+cast_shadow = 0
+mesh = SubResource("CylinderMesh_palw3")

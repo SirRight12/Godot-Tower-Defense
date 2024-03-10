@@ -1,0 +1,31 @@
+[gd_scene load_steps=5 format=3 uid="uid://mm0hhwjfr6v2"]
+
+[ext_resource type="Script" path="res://PathHealthEntity.gd" id="1_odj4j"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rq5sf"]
+albedo_color = Color(0, 0.384314, 1, 1)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_gslu5"]
+material = SubResource("StandardMaterial3D_rq5sf")
+radius = 0.125
+height = 0.5
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_18ct4"]
+radius = 0.125
+height = 0.5
+
+[node name="PathHealthEntity" type="Node3D"]
+script = ExtResource("1_odj4j")
+speed = 1.5
+
+[node name="Node3D" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.4, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Node3D"]
+mesh = SubResource("CapsuleMesh_gslu5")
+skeleton = NodePath("../..")
+
+[node name="Area3D" type="Area3D" parent="Node3D"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Node3D/Area3D"]
+shape = SubResource("CapsuleShape3D_18ct4")
