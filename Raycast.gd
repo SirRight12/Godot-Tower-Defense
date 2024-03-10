@@ -16,6 +16,7 @@ func get_placeholder(tower_selected:PackedScene):
 	place_holder_tower = tower_selected.instantiate()
 	current_selected = tower_selected
 	get_parent_node_3d().add_child(place_holder_tower)
+	place_holder_tower.show_range()
 	move_tower_to_mouse()
 func revoke_placeholder():
 	if !place_holder_tower: return

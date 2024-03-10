@@ -95,6 +95,3 @@ basic = ExtResource("6_7payq")
 speedy = ExtResource("7_lhytt")
 
 [node name="Easy" parent="." instance=ExtResource("6_bcsvp")]
-
-[node name="Tower" parent="." instance=ExtResource("2_6v55k")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.39183, 0.15, 4.84481)
