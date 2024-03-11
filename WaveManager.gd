@@ -9,8 +9,8 @@ var current_wave = 0
 var waves:Array
 var enemies_left
 func _ready():
-	#remove later
 	time_scale_manager = get_parent().find_child("TimeScaleManager")
+	#remove later in favor of a UI start button
 	start_waves()
 func start_waves():
 	waves = current_game_mode.unpack_waves()
@@ -26,7 +26,7 @@ func start_wave(idx):
 		await timeout(time_scale_manager.div(delay),true)
 		var spawned_enemy = enemy_types[type].instantiate()
 		spawned_enemy.achieved_goal.connect(enemy_die)
-		parent.call_deferred("add_child",spawned_enemy)
+		parent.add_child(spawned_enemy)
 func check_wave_over():
 	if enemies_left <= 0:
 		current_wave += 1

@@ -1,0 +1,26 @@
+[gd_scene load_steps=7 format=3 uid="uid://6i6yh1tiycmt"]
+
+[ext_resource type="Script" path="res://Base.gd" id="1_asqr1"]
+[ext_resource type="Script" path="res://TimeScale.gd" id="2_r60f2"]
+[ext_resource type="Script" path="res://WaveManager.gd" id="3_sjgfr"]
+[ext_resource type="PackedScene" uid="uid://db1xxjnsoxss6" path="res://basic.tscn" id="4_qnt7u"]
+[ext_resource type="PackedScene" uid="uid://mm0hhwjfr6v2" path="res://speedy.tscn" id="5_hsbw5"]
+[ext_resource type="PackedScene" uid="uid://bc2nx44jw4f0n" path="res://easy_mode.tscn" id="6_i2gm1"]
+
+[node name="Node3D" type="Node3D"]
+
+[node name="Base" type="Node" parent="."]
+script = ExtResource("1_asqr1")
+max_hp = 100
+temp_shield = 5
+
+[node name="TimeScaleManager" type="Node" parent="."]
+script = ExtResource("2_r60f2")
+
+[node name="WaveManager" type="Node" parent="." node_paths=PackedStringArray("current_game_mode")]
+script = ExtResource("3_sjgfr")
+current_game_mode = NodePath("../Easy")
+basic = ExtResource("4_qnt7u")
+speedy = ExtResource("5_hsbw5")
+
+[node name="Easy" parent="." instance=ExtResource("6_i2gm1")]
