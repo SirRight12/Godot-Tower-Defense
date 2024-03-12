@@ -46,12 +46,13 @@ func _unhandled_input(event):
 	handle_cancel(event)
 	handle_tower_pick(event)
 	handle_enemy_pick(event)
-func cast(mask:int =1) -> Dictionary:
+func cast(mask:int = 1) -> Dictionary:
 	var world = get_world_3d().direct_space_state
 	var mouse = get_viewport().get_mouse_position()
 	var from = project_ray_origin(mouse)
 	var to = from + project_ray_normal(mouse) * 1000
 	var query = PhysicsRayQueryParameters3D.create(from,to)
+	query.set_collide_with_areas(true)
 	if mask:
 		query.set_collision_mask(mask)
 	var result = world.intersect_ray(query)
@@ -66,7 +67,6 @@ func handle_cast(event):
 		console.log_out("init")
 		console.log_ln()
 		var tower = current_selected.instantiate()
-		tower.hide_all()
 		console.log_out("tower instantiated!")
 		console.log_ln()
 		tower.set_position(placeholder_position)		
@@ -78,6 +78,7 @@ func handle_cast(event):
 		get_parent_node_3d().add_child(tower)
 		console.log_out("added to scene!")
 		placed_tower = true
+		tower.hide_all()
 func handle_move(event):
 	if !place_holder_tower: return
 	if !event is InputEventMouseMotion: return
@@ -119,28 +120,27 @@ func handle_tower_pick(event):
 	if event.is_action_released("pick"):
 		var result = cast(2)
 		if !result:
-			inspected_tower.hide_all()
-			inspecting_tower = false
-			inspected_tower = false
+			if inspected_tower:
+				inspected_tower.hide_all()
+				inspecting_tower = false
+				inspected_tower = false
 			return
 		if result['collider'].name != "TowerCollider":
 			return
 		if inspected_tower:
 			inspected_tower.hide_all()
 		var parent = result['collider'].get_parent_node_3d()
+		parent.show_all()
 		inspecting_tower = true
 		inspected_tower = parent
 
 
 func handle_enemy_pick(event):
 	if not event is InputEventMouseMotion:
-		console.log_out("not mouse motion")
 		return
-	var result = cast(4)
-	console.log_clear()
-	console.log_out(result)
+	var result = cast(8)
 	if !result: 
 		follow_mouse.visible = false
 		return
 	follow_mouse.visible = true
-	#follow_mouse.position = get_viewport().get_mouse_position() 
+	follow_mouse.position = get_viewport().get_mouse_position() 

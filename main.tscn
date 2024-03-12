@@ -42,11 +42,12 @@ progress = 15.4142
 loop = false
 tilt_enabled = false
 
-[node name="Camera3D" type="Camera3D" parent="." node_paths=PackedStringArray("console", "filter_root")]
+[node name="Camera3D" type="Camera3D" parent="." node_paths=PackedStringArray("console", "filter_root", "follow_mouse")]
 transform = Transform3D(1, 0, 0, 0, 0.884581, 0.466387, 0, -0.466387, 0.884581, 2.71098, 2.49812, 7.85196)
 script = ExtResource("1_rp8mg")
 console = NodePath("../Console")
 filter_root = NodePath("../Control")
+follow_mouse = NodePath("../FollowMouse")
 tower_1 = ExtResource("2_6v55k")
 tower_2 = ExtResource("2_6v55k")
 tower_3 = ExtResource("2_6v55k")
@@ -106,8 +107,18 @@ speedy = ExtResource("7_lhytt")
 [node name="Easy" parent="." instance=ExtResource("6_bcsvp")]
 
 [node name="FollowMouse" type="ColorRect" parent="."]
+visible = false
 offset_left = 928.0
 offset_top = 211.0
 offset_right = 1044.0
 offset_bottom = 247.0
+mouse_filter = 2
 color = Color(0, 0.737255, 0, 1)
+
+[node name="Label" type="Label" parent="FollowMouse"]
+layout_mode = 0
+offset_right = 116.0
+offset_bottom = 36.0
+text = "10/10"
+horizontal_alignment = 1
+vertical_alignment = 1

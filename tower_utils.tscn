@@ -27,6 +27,8 @@ height = 0.001
 
 [node name="Range" type="Area3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.01, 0)
+collision_layer = 64
+collision_mask = 64
 script = ExtResource("1_nr22f")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Range"]
