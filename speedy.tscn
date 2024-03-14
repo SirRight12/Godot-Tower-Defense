@@ -1,12 +1,10 @@
 [gd_scene load_steps=6 format=3 uid="uid://mm0hhwjfr6v2"]
 
 [ext_resource type="Script" path="res://PathHealthEntity.gd" id="1_odj4j"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rq5sf"]
-albedo_color = Color(0, 0.384314, 1, 1)
+[ext_resource type="Material" uid="uid://lud4viija6do" path="res://speedy_material.tres" id="2_4sb2d"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_gslu5"]
-material = SubResource("StandardMaterial3D_rq5sf")
+material = ExtResource("2_4sb2d")
 radius = 0.125
 height = 0.5
 
@@ -14,9 +12,8 @@ height = 0.5
 radius = 0.125
 height = 0.5
 
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_66iin"]
-radius = 0.125
-height = 0.5
+[sub_resource type="BoxShape3D" id="BoxShape3D_r8vfe"]
+size = Vector3(0.2, 0.1, 0.2)
 
 [node name="PathHealthEntity" type="Node3D"]
 script = ExtResource("1_odj4j")
@@ -29,15 +26,12 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.4, 0)
 mesh = SubResource("CapsuleMesh_gslu5")
 skeleton = NodePath("../..")
 
-[node name="Hitbox" type="Area3D" parent="Entity"]
+[node name="Hitbox" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.4, 0)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Entity/Hitbox"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Hitbox"]
 shape = SubResource("CapsuleShape3D_18ct4")
 
-[node name="EnemyPicker" type="StaticBody3D" parent="."]
-collision_layer = 16
-collision_mask = 16
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="EnemyPicker"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.4, 0)
-shape = SubResource("CapsuleShape3D_66iin")
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="Hitbox"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.272755, 0)
+shape = SubResource("BoxShape3D_r8vfe")

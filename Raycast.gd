@@ -2,6 +2,9 @@ extends Camera3D
 @export var console:Console
 @export var filter_root:Control
 @export var follow_mouse:ColorRect
+@onready var follow_percent = follow_mouse.find_child("HP Percent")
+@onready var starting_size = follow_percent.size.x
+@onready var follow_text = follow_mouse.find_child("Label")
 @export var tower_1:PackedScene
 @export var tower_2:PackedScene
 @export var tower_3:PackedScene
@@ -45,7 +48,6 @@ func _unhandled_input(event):
 	handle_tower_select(event)
 	handle_cancel(event)
 	handle_tower_pick(event)
-	handle_enemy_pick(event)
 func cast(mask:int = 1) -> Dictionary:
 	var world = get_world_3d().direct_space_state
 	var mouse = get_viewport().get_mouse_position()
@@ -61,22 +63,10 @@ func handle_cast(event):
 	if is_on_path: return
 	if !place_holder_tower: return
 	if event.is_action_released("pick"):
-		console.log_clear()
-		console.log_out(is_on_path)
-		console.log_ln()
-		console.log_out("init")
-		console.log_ln()
 		var tower = current_selected.instantiate()
-		console.log_out("tower instantiated!")
-		console.log_ln()
 		tower.set_position(placeholder_position)		
-		console.log_out("tower position set!")
-		console.log_ln()
 		revoke_placeholder()
-		console.log_out("placeholder revoked!")
-		console.log_ln()
 		get_parent_node_3d().add_child(tower)
-		console.log_out("added to scene!")
 		placed_tower = true
 		tower.hide_all()
 func handle_move(event):
@@ -129,18 +119,30 @@ func handle_tower_pick(event):
 			return
 		if inspected_tower:
 			inspected_tower.hide_all()
-		var parent = result['collider'].get_parent_node_3d()
+		var parent:Tower = result['collider'].get_parent_node_3d()
 		parent.show_all()
+		var range_util = parent.get_tower_util("Range")
 		inspecting_tower = true
 		inspected_tower = parent
 
 
-func handle_enemy_pick(event):
-	if not event is InputEventMouseMotion:
-		return
+func enemy_pick():
 	var result = cast(8)
 	if !result: 
 		follow_mouse.visible = false
 		return
 	follow_mouse.visible = true
-	follow_mouse.position = get_viewport().get_mouse_position() 
+	follow_mouse.position = get_viewport().get_mouse_position()
+	var entity = result['collider'].get_parent_node_3d()
+	console.log_clear()
+	console.log_out(entity.hp)
+	follow_text.text = str(entity.hp) + "/" + str(entity.max_hp)
+	var percent:float = float(entity.hp) / float(entity.max_hp)
+	var new_size = starting_size * percent
+	console.log_ln()
+	console.log_out(starting_size)
+	console.log_ln()
+	console.log_out(new_size)
+	follow_percent.size.x = new_size
+func _process(_delta):
+	enemy_pick()

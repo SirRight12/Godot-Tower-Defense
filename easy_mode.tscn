@@ -8,8 +8,8 @@ script = ExtResource("1_t8o8a")
 
 [node name="wave_1" type="Node" parent="."]
 script = ExtResource("2_yhfk2")
-enemies = Array[int]([0, 0, 0, 0, 0, 0, 0])
-times = Array[int]([0, 1000, 1000, 1000, 1000, 1000, 1000])
+enemies = Array[int]([0, 0, 1, 1, 0, 0, 0, 0])
+times = Array[int]([0, 1000, 1000, 1000, 1000, 1000, 1000, 1000])
 
 [node name="wave_2" type="Node" parent="."]
 script = ExtResource("2_yhfk2")

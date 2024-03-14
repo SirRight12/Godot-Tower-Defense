@@ -35,16 +35,13 @@ func check_goal():
 		queue_free()
 		reached_goal = true
 		pass
-func _enter_tree():
+func _ready():
 	path = get_path_follower()
 	scaler = get_time_scaler()
 	move_self(.001)
-	_set_tag()
 func _process(delta):
 	var s_dt = scaler.mult(delta)
 	move_self(s_dt)
- #functions for other classes to use
+#functions for other classes to use
 func _enter():
-	pass
-func _set_tag():
 	pass

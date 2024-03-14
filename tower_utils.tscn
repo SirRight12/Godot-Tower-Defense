@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://clx7bg4kof7n2"]
+[gd_scene load_steps=8 format=3 uid="uid://clx7bg4kof7n2"]
 
 [ext_resource type="Script" path="res://Range.gd" id="1_nr22f"]
 [ext_resource type="Material" uid="uid://bjstrrm2wvbe1" path="res://deny-place-material.tres" id="2_uvwlv"]
+[ext_resource type="Script" path="res://console.gd" id="3_rro81"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_nyyw0"]
 height = 0.001
@@ -25,11 +26,12 @@ height = 0.001
 
 [node name="TowerUtils" type="Node3D"]
 
-[node name="Range" type="Area3D" parent="."]
+[node name="Range" type="Area3D" parent="." node_paths=PackedStringArray("console")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.01, 0)
 collision_layer = 64
-collision_mask = 64
+collision_mask = 8
 script = ExtResource("1_nr22f")
+console = NodePath("../Console")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Range"]
 shape = SubResource("CylinderShape3D_nyyw0")
@@ -61,3 +63,8 @@ shape = SubResource("CylinderShape3D_lk405")
 [node name="MeshInstance3D" type="MeshInstance3D" parent="DenyPlace"]
 cast_shadow = 0
 mesh = SubResource("CylinderMesh_palw3")
+
+[node name="Console" type="Label" parent="."]
+offset_right = 40.0
+offset_bottom = 23.0
+script = ExtResource("3_rro81")

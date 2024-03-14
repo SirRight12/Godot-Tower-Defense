@@ -9,7 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://db1xxjnsoxss6" path="res://basic.tscn" id="6_7payq"]
 [ext_resource type="PackedScene" uid="uid://bc2nx44jw4f0n" path="res://easy_mode.tscn" id="6_bcsvp"]
 [ext_resource type="Script" path="res://WaveManager.gd" id="6_sqo0v"]
-[ext_resource type="PackedScene" uid="uid://mm0hhwjfr6v2" path="res://speedy.tscn" id="7_lhytt"]
+[ext_resource type="PackedScene" uid="uid://bwc1i6myddq0d" path="res://new_speedy.tscn" id="10_2l4yb"]
 [ext_resource type="PackedScene" uid="uid://13owcifnhg10" path="res://camera_filter.tscn" id="11_gienb"]
 
 [sub_resource type="Curve3D" id="Curve3D_2hm1b"]
@@ -102,7 +102,7 @@ script = ExtResource("5_x0t1g")
 script = ExtResource("6_sqo0v")
 current_game_mode = NodePath("../Easy")
 basic = ExtResource("6_7payq")
-speedy = ExtResource("7_lhytt")
+speedy = ExtResource("10_2l4yb")
 
 [node name="Easy" parent="." instance=ExtResource("6_bcsvp")]
 
@@ -113,7 +113,13 @@ offset_top = 211.0
 offset_right = 1044.0
 offset_bottom = 247.0
 mouse_filter = 2
-color = Color(0, 0.737255, 0, 1)
+color = Color(0.694118, 0, 0.0666667, 1)
+
+[node name="HP Percent" type="ColorRect" parent="FollowMouse"]
+layout_mode = 0
+offset_right = 116.0
+offset_bottom = 36.0
+color = Color(0, 0.823529, 0, 1)
 
 [node name="Label" type="Label" parent="FollowMouse"]
 layout_mode = 0
@@ -122,3 +128,6 @@ offset_bottom = 36.0
 text = "10/10"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="DamageTower" parent="." instance=ExtResource("2_6v55k")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.128028, 0.15, 4.86598)
