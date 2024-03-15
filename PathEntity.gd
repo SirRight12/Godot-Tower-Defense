@@ -1,9 +1,8 @@
 extends Node3D
 class_name PathEntity
-@export_subgroup("stats")
 @export var speed:float = 1.0
 @export var provide_path: PathFollow3D
-signal achieved_goal()
+signal died()
 var path:PathFollow3D
 var reached_goal = false
 @export var progress = 0.0
@@ -28,7 +27,7 @@ func check_goal():
 	if path.progress_ratio >= 1 and speed > 0:
 		queue_free()
 		_enter()
-		achieved_goal.emit()
+		died.emit()
 		reached_goal = true
 		pass
 	elif path.progress_ratio <= 0 and speed < 0:

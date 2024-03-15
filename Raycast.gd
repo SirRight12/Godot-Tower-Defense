@@ -134,15 +134,9 @@ func enemy_pick():
 	follow_mouse.visible = true
 	follow_mouse.position = get_viewport().get_mouse_position()
 	var entity = result['collider'].get_parent_node_3d()
-	console.log_clear()
-	console.log_out(entity.hp)
 	follow_text.text = str(entity.hp) + "/" + str(entity.max_hp)
 	var percent:float = float(entity.hp) / float(entity.max_hp)
 	var new_size = starting_size * percent
-	console.log_ln()
-	console.log_out(starting_size)
-	console.log_ln()
-	console.log_out(new_size)
 	follow_percent.size.x = new_size
 func _process(_delta):
 	enemy_pick()

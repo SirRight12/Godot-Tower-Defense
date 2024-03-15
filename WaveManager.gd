@@ -3,7 +3,8 @@ class_name WaveManager
 @export var current_game_mode:GameMode
 @export var basic:PackedScene
 @export var speedy:PackedScene
-@onready var enemy_types:Array[PackedScene] = [basic,speedy]
+@export var zickey: PackedScene
+@onready var enemy_types:Array[PackedScene] = [basic,speedy,zickey]
 var time_scale_manager:TimeScale
 var current_wave = 0
 var waves:Array
@@ -25,7 +26,7 @@ func start_wave(idx):
 		var delay = enemy_data["delay"]
 		await timeout(time_scale_manager.div(delay),true)
 		var spawned_enemy = enemy_types[type].instantiate()
-		spawned_enemy.achieved_goal.connect(enemy_die)
+		spawned_enemy.died.connect(enemy_die)
 		parent.add_child(spawned_enemy)
 func check_wave_over():
 	if enemies_left <= 0:

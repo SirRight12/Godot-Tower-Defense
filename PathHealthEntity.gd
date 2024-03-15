@@ -6,6 +6,7 @@ class_name PathHealthEntity
 @onready var base = get_parent_node_3d().find_child("Base")
 @export var resist: int
 @onready var resistance:float = 1 - (resist / 100)
+var dead = false
 func _enter():
 	base.take_damage(hp)
 func take_damage(dmg):
@@ -13,5 +14,7 @@ func take_damage(dmg):
 	if damage <= 0:
 		damage = 1
 	hp -= damage
-	if hp <= 0:
+	if hp <= 0 and !dead:
 		queue_free()
+		dead = true
+		died.emit()

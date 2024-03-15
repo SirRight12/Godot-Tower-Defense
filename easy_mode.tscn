@@ -8,20 +8,20 @@ script = ExtResource("1_t8o8a")
 
 [node name="wave_1" type="Node" parent="."]
 script = ExtResource("2_yhfk2")
-enemies = Array[int]([0, 0, 1, 1, 0, 0, 0, 0])
+enemies = Array[int]([2, 2, 2, 2, 2, 0, 0, 0])
 times = Array[int]([0, 1000, 1000, 1000, 1000, 1000, 1000, 1000])
 
 [node name="wave_2" type="Node" parent="."]
 script = ExtResource("2_yhfk2")
 enemies = Array[int]([0, 0, 0, 0, 0, 0, 0, 0, 0, 0])
-times = Array[int]([0, 500, 500, 500, 500, 500, 500, 500, 500, 500])
+times = Array[int]([0, 1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000])
 
 [node name="wave_3" type="Node" parent="."]
 script = ExtResource("2_yhfk2")
-enemies = Array[int]([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0])
-times = Array[int]([0, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500])
+enemies = Array[int]([0, 0, 0, 0, 0, 0, 0, 0])
+times = Array[int]([0, 500, 500, 500, 500, 500, 500, 500])
 
 [node name="wave_4" type="Node" parent="."]
 script = ExtResource("2_yhfk2")
-enemies = Array[int]([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0])
-times = Array[int]([0, 500, 500, 500, 500, 500, 500, 500, 500, 500, 1000, 500, 500, 500, 500, 500, 500, 500, 500, 500])
+enemies = Array[int]([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0])
+times = Array[int]([0, 500, 500, 500, 500, 500, 500, 500, 500, 500, 500])

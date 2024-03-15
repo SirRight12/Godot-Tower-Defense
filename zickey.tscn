@@ -1,0 +1,41 @@
+[gd_scene load_steps=6 format=3 uid="uid://cty70vo8qkw5f"]
+
+[ext_resource type="Script" path="res://PathHealthEntity.gd" id="1_blh4k"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_c4blh"]
+radius = 0.125
+height = 0.5
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_bd1po"]
+size = Vector3(0.2, 0.1, 0.2)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ld38q"]
+albedo_color = Color(0.647059, 0.764706, 0.941176, 1)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_lk048"]
+material = SubResource("StandardMaterial3D_ld38q")
+radius = 0.125
+height = 0.5
+
+[node name="PathHealthEntity" type="Node3D"]
+script = ExtResource("1_blh4k")
+max_hp = 9
+speed = 1.33
+
+[node name="Hitbox" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.4, 0)
+collision_layer = 8
+collision_mask = 8
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Hitbox"]
+shape = SubResource("CapsuleShape3D_c4blh")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="Hitbox"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.272755, 0)
+shape = SubResource("BoxShape3D_bd1po")
+
+[node name="Entity" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.4, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Entity"]
+mesh = SubResource("CapsuleMesh_lk048")

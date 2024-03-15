@@ -6,7 +6,7 @@ class_name DamageTower
 @export var reload_time:float = 1:
 	get = get_reload_time
 var awaiting_attack = false
-func process(dt):
+func _process(_delta):
 	if awaiting_attack: return
 	if range_util.areas.size() < 1: return
 	awaiting_attack = true
@@ -27,7 +27,7 @@ func get_damage():
 	var damage_changed = damage
 	return damage_changed
 func get_reload_time():
-# for messing around with buffs	
+# for messing around with buffs
 	var time_changed = reload_time
-	scaler.div(time_changed)
+	time_changed = scaler.div(time_changed)
 	return time_changed

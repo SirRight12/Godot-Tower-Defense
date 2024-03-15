@@ -4,12 +4,12 @@
 [ext_resource type="PackedScene" uid="uid://bhug5g0ojavct" path="res://Scout.tscn" id="2_6v55k"]
 [ext_resource type="MeshLibrary" uid="uid://bgy1gpdaaiwnd" path="res://tileset.tres" id="2_rd5dc"]
 [ext_resource type="Script" path="res://Base.gd" id="3_ng37n"]
-[ext_resource type="Script" path="res://console.gd" id="4_yyfi0"]
 [ext_resource type="Script" path="res://TimeScale.gd" id="5_x0t1g"]
 [ext_resource type="PackedScene" uid="uid://db1xxjnsoxss6" path="res://basic.tscn" id="6_7payq"]
 [ext_resource type="PackedScene" uid="uid://bc2nx44jw4f0n" path="res://easy_mode.tscn" id="6_bcsvp"]
 [ext_resource type="Script" path="res://WaveManager.gd" id="6_sqo0v"]
 [ext_resource type="PackedScene" uid="uid://bwc1i6myddq0d" path="res://new_speedy.tscn" id="10_2l4yb"]
+[ext_resource type="PackedScene" uid="uid://cty70vo8qkw5f" path="res://zickey.tscn" id="10_3m1vy"]
 [ext_resource type="PackedScene" uid="uid://13owcifnhg10" path="res://camera_filter.tscn" id="11_gienb"]
 
 [sub_resource type="Curve3D" id="Curve3D_2hm1b"]
@@ -42,10 +42,9 @@ progress = 15.4142
 loop = false
 tilt_enabled = false
 
-[node name="Camera3D" type="Camera3D" parent="." node_paths=PackedStringArray("console", "filter_root", "follow_mouse")]
+[node name="Camera3D" type="Camera3D" parent="." node_paths=PackedStringArray("filter_root", "follow_mouse")]
 transform = Transform3D(1, 0, 0, 0, 0.884581, 0.466387, 0, -0.466387, 0.884581, 2.71098, 2.49812, 7.85196)
 script = ExtResource("1_rp8mg")
-console = NodePath("../Console")
 filter_root = NodePath("../Control")
 follow_mouse = NodePath("../FollowMouse")
 tower_1 = ExtResource("2_6v55k")
@@ -77,11 +76,6 @@ environment = SubResource("Environment_s4sxu")
 transform = Transform3D(0.470701, 0.580386, -0.664524, 0.140116, 0.694448, 0.705769, 0.871096, -0.425317, 0.245556, -7.13201, 1.42291, 5.33234)
 shadow_enabled = true
 
-[node name="Console" type="Label" parent="."]
-offset_right = 40.0
-offset_bottom = 23.0
-script = ExtResource("4_yyfi0")
-
 [node name="Control" parent="." instance=ExtResource("11_gienb")]
 anchors_preset = 0
 anchor_right = 0.0
@@ -103,6 +97,7 @@ script = ExtResource("6_sqo0v")
 current_game_mode = NodePath("../Easy")
 basic = ExtResource("6_7payq")
 speedy = ExtResource("10_2l4yb")
+zickey = ExtResource("10_3m1vy")
 
 [node name="Easy" parent="." instance=ExtResource("6_bcsvp")]
 
@@ -128,6 +123,3 @@ offset_bottom = 36.0
 text = "10/10"
 horizontal_alignment = 1
 vertical_alignment = 1
-
-[node name="DamageTower" parent="." instance=ExtResource("2_6v55k")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.128028, 0.15, 4.86598)
