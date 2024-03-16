@@ -8,8 +8,6 @@ func _enter_area(body:Node3D):
 	if not entity is PathHealthEntity: return
 	if entity.speed < 0: return
 	areas[str(body)] = body
-	var target = get_first_target()
-	print(body)
 func _exit_area(body):
 	print(body)
 	areas.erase(str(body))

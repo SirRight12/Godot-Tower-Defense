@@ -5,6 +5,7 @@ class_name WaveManager
 @export var speedy:PackedScene
 @export var zickey: PackedScene
 @onready var enemy_types:Array[PackedScene] = [basic,speedy,zickey]
+@onready var parent:Node3D = get_parent().get_parent()
 var time_scale_manager:TimeScale
 var current_wave = 0
 var waves:Array
@@ -17,7 +18,9 @@ func start_waves():
 	waves = current_game_mode.unpack_waves()
 	start_wave(current_wave)
 func start_wave(idx):
-	var parent = get_parent()
+	if waves.size() == idx: 
+		print("beat game")
+		return
 	var wave = waves[idx]
 	enemies_left = wave.size()
 	for x in len(wave):

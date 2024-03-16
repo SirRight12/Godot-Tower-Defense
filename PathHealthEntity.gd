@@ -5,7 +5,7 @@ class_name PathHealthEntity
 @onready var hp = max_hp
 @onready var base = get_parent_node_3d().find_child("Base")
 @export var resist: int
-@onready var resistance:float = 1 - (resist / 100)
+@onready var resistance:float = 1 - (float(resist) / 100.0)
 var dead = false
 func _enter():
 	base.take_damage(hp)

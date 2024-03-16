@@ -1,13 +1,17 @@
-[gd_scene load_steps=7 format=3 uid="uid://6i6yh1tiycmt"]
+[gd_scene load_steps=10 format=3 uid="uid://6i6yh1tiycmt"]
 
 [ext_resource type="Script" path="res://Base.gd" id="1_asqr1"]
+[ext_resource type="Script" path="res://GameManager.gd" id="1_er8mo"]
 [ext_resource type="Script" path="res://TimeScale.gd" id="2_r60f2"]
 [ext_resource type="Script" path="res://WaveManager.gd" id="3_sjgfr"]
 [ext_resource type="PackedScene" uid="uid://db1xxjnsoxss6" path="res://basic.tscn" id="4_qnt7u"]
-[ext_resource type="PackedScene" uid="uid://mm0hhwjfr6v2" path="res://speedy.tscn" id="5_hsbw5"]
+[ext_resource type="PackedScene" uid="uid://bwc1i6myddq0d" path="res://speedy.tscn" id="5_hsbw5"]
 [ext_resource type="PackedScene" uid="uid://bc2nx44jw4f0n" path="res://easy_mode.tscn" id="6_i2gm1"]
+[ext_resource type="PackedScene" uid="uid://cty70vo8qkw5f" path="res://zickey.tscn" id="7_ufg46"]
+[ext_resource type="PackedScene" uid="uid://ch5s0twkoxwvc" path="res://DEBUG.tscn" id="9_h2sms"]
 
-[node name="Node3D" type="Node3D"]
+[node name="GameManager" type="Node"]
+script = ExtResource("1_er8mo")
 
 [node name="Base" type="Node" parent="."]
 script = ExtResource("1_asqr1")
@@ -19,8 +23,11 @@ script = ExtResource("2_r60f2")
 
 [node name="WaveManager" type="Node" parent="." node_paths=PackedStringArray("current_game_mode")]
 script = ExtResource("3_sjgfr")
-current_game_mode = NodePath("../Easy")
+current_game_mode = NodePath("../DEBUG")
 basic = ExtResource("4_qnt7u")
 speedy = ExtResource("5_hsbw5")
+zickey = ExtResource("7_ufg46")
 
 [node name="Easy" parent="." instance=ExtResource("6_i2gm1")]
+
+[node name="DEBUG" parent="." instance=ExtResource("9_h2sms")]

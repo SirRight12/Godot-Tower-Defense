@@ -1,0 +1,22 @@
+[gd_scene load_steps=3 format=3 uid="uid://ch5s0twkoxwvc"]
+
+[ext_resource type="Script" path="res://GameMode.gd" id="1_s1p0k"]
+[ext_resource type="Script" path="res://Wave.gd" id="2_wepyy"]
+
+[node name="DEBUG" type="Node"]
+script = ExtResource("1_s1p0k")
+
+[node name="Wave1" type="Node" parent="."]
+script = ExtResource("2_wepyy")
+enemies = Array[int]([0])
+times = Array[int]([0])
+
+[node name="Wave2" type="Node" parent="."]
+script = ExtResource("2_wepyy")
+enemies = Array[int]([1])
+times = Array[int]([0])
+
+[node name="Wave3" type="Node" parent="."]
+script = ExtResource("2_wepyy")
+enemies = Array[int]([2])
+times = Array[int]([0])

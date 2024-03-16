@@ -6,16 +6,13 @@ signal died()
 var path:PathFollow3D
 var reached_goal = false
 @export var progress = 0.0
-@export var provide_scaler:TimeScale
-var scaler
+
+@onready var game:GameManager = get_parent_node_3d().find_child("GameManager")
+@onready var scaler:TimeScale = game.request_manager(game.MANAGERS.TIMESCALE)
 func get_path_follower():
 	if !path:
 		return get_parent_node_3d().find_child("Path").find_child("Follow")
 	return path
-func get_time_scaler():
-	if !provide_scaler:
-		return get_parent_node_3d().find_child("TimeScaleManager") 
-	return provide_scaler
 func move_self(dt):
 	if reached_goal: return
 	progress += speed * dt
@@ -36,7 +33,6 @@ func check_goal():
 		pass
 func _ready():
 	path = get_path_follower()
-	scaler = get_time_scaler()
 	move_self(.001)
 func _process(delta):
 	var s_dt = scaler.mult(delta)

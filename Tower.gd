@@ -7,7 +7,10 @@ class_name Tower
 @onready var utils = find_child("TowerUtils")
 @onready var range_util:TowerRange = get_tower_util("Range")
 @onready var deny_place_util = get_tower_util("DenyPlace")
-@onready var scaler:TimeScale = get_parent_node_3d().find_child("TimeScaleManager")
+@onready var game:GameManager = get_parent_node_3d().find_child("GameManager")
+@onready var scaler:TimeScale = game.request_manager(game.MANAGERS.TIMESCALE)
+func _init():
+	assert(false,"Tower is an abstract class")
 func _ready():
 	add_to_group("tower")
 func get_tower_util(util_name:String) -> Node3D:
