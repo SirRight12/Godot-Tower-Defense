@@ -9,6 +9,7 @@ func _init():
 	get = get_reload_time
 var awaiting_attack = false
 func _process(_delta):
+	if is_placeholder: return
 	if awaiting_attack: return
 	if range_util.areas.size() < 1: return
 	awaiting_attack = true

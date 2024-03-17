@@ -51,7 +51,6 @@ operation = 2
 radius = 2.9
 height = 0.001
 sides = 64
-material = SubResource("StandardMaterial3D_6hhwj")
 
 [node name="DenyPlace" type="Area3D" parent="."]
 collision_layer = 4

@@ -15,11 +15,12 @@ var can_not_place_color = Color(1.0,0.0,0.08,0.16)
 var place_holder_tower
 var current_selected
 var placeholder_visible = false
-var is_on_path = false
+var deny_placement = false
 var placeholder_position:Vector3
 var placed_tower = false
 var inspecting_tower = false
 var inspected_tower
+var towers_placed = {}
 func set_filter(color:Color):
 	filter.color = color
 func show_filter():
@@ -29,7 +30,9 @@ func hide_filter():
 func get_placeholder(tower_selected:PackedScene):
 	revoke_placeholder()
 	show_filter()
+	show_all_tower_deny()
 	place_holder_tower = tower_selected.instantiate()
+	place_holder_tower.is_placeholder = true
 	current_selected = tower_selected
 	get_parent_node_3d().add_child(place_holder_tower)
 	place_holder_tower.show_range()
@@ -38,7 +41,7 @@ func revoke_placeholder():
 	if !place_holder_tower: return
 	hide_filter()
 	current_selected = false
-	is_on_path = false
+	deny_placement = false
 	place_holder_tower.queue_free()
 	place_holder_tower = false
 func _unhandled_input(event):
@@ -59,11 +62,13 @@ func cast(mask:int = 1) -> Dictionary:
 	var result = world.intersect_ray(query)
 	return result
 func handle_cast(event):
-	if is_on_path: return
+	if deny_placement: return
 	if !place_holder_tower: return
 	if event.is_action_released("pick"):
-		var tower = current_selected.instantiate()
-		tower.set_position(placeholder_position)		
+		hide_all_tower_deny()
+		var tower:Tower = current_selected.instantiate()
+		towers_placed[tower.name] = tower
+		tower.set_position(placeholder_position)
 		revoke_placeholder()
 		get_parent_node_3d().add_child(tower)
 		placed_tower = true
@@ -75,14 +80,17 @@ func handle_move(event):
 func move_tower_to_mouse():
 	var result = cast()
 	if !result:
-		is_on_path = true
+		deny_placement = true
 		return
 	if result['collider'].is_in_group("path"):
 		set_filter(can_not_place_color)
-		is_on_path = true
+		deny_placement = true
 	else:
 		set_filter(can_place_color)
-		is_on_path = false
+		deny_placement = false
+	if place_holder_tower.check_deny():
+		set_filter(can_not_place_color)
+		deny_placement = true
 	place_holder_tower.set_position(result['position'])
 	placeholder_position = result['position']
 func handle_tower_select(event):
@@ -138,3 +146,11 @@ func enemy_pick():
 	follow_percent.size.x = new_size
 func _process(_delta):
 	enemy_pick()
+func hide_all_tower_deny():
+	for x in towers_placed:
+		var tower:Tower = towers_placed[x]
+		tower.hide_deny_place()
+func show_all_tower_deny():
+	for x in towers_placed:
+		var tower:Tower = towers_placed[x]
+		tower.show_deny_place()

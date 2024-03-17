@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://13owcifnhg10" path="res://camera_filter.tscn" id="3_awrul"]
 [ext_resource type="Curve3D" uid="uid://bftd7dwhnyxdn" path="res://World2.tres" id="3_edj1f"]
 [ext_resource type="MeshLibrary" uid="uid://bgy1gpdaaiwnd" path="res://tileset.tres" id="4_b146v"]
-[ext_resource type="PackedScene" uid="uid://bhug5g0ojavct" path="res://Scout.tscn" id="4_u7k71"]
+[ext_resource type="PackedScene" uid="uid://dvbmgppw84ix5" path="res://Scout.tscn" id="4_u7k71"]
 [ext_resource type="PackedScene" uid="uid://6i6yh1tiycmt" path="res://game_manager.tscn" id="6_qkjuo"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_66ioh"]
@@ -63,5 +63,3 @@ tower_5 = ExtResource("4_u7k71")
 [node name="FilterRoot" parent="." instance=ExtResource("3_awrul")]
 
 [node name="GameManager" parent="." instance=ExtResource("6_qkjuo")]
-
-[editable path="GameManager"]
