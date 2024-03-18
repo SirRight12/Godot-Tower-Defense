@@ -19,6 +19,7 @@ var placeholder_position:Vector3
 var placed_tower = false
 var inspecting_tower = false
 var inspected_tower
+var towers_placed = {}
 func set_filter(color:Color):
 	filter.color = color
 func show_filter():
@@ -33,6 +34,10 @@ func get_placeholder(idx):
 	place_holder_tower = tower_selected.instantiate()
 	place_holder_tower.is_placeholder = true
 	current_selected = idx
+	show_all_tower_deny()
+	place_holder_tower = tower_selected.instantiate()
+	place_holder_tower.is_placeholder = true
+	current_selected = tower_selected
 	get_parent_node_3d().add_child(place_holder_tower)
 	place_holder_tower.show_range()
 	move_tower_to_mouse()
@@ -69,7 +74,14 @@ func handle_cast(event):
 		if !can_buy: return
 		registry.place_tower(current_selected,placeholder_position)
 		revoke_placeholder()
+		hide_all_tower_deny()
+		var tower:Tower = current_selected.instantiate()
+		towers_placed[tower.name] = tower
+		tower.set_position(placeholder_position)
+		revoke_placeholder()
+		get_parent_node_3d().add_child(tower)
 		placed_tower = true
+		tower.hide_all()
 func handle_move(event):
 	if !place_holder_tower: return
 	if !event is InputEventMouseMotion: return

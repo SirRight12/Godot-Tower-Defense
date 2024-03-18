@@ -8,7 +8,6 @@ func _init():
 @export var reload_time:float = 1:
 	get = get_reload_time
 @export var money_bonus:float = 1.0
-@onready var money:MoneyManager = game.request_manager(game.MANAGERS.MONEY)
 var awaiting_attack = false
 func _process(_delta):
 	if is_placeholder: return

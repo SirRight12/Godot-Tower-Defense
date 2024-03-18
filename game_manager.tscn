@@ -27,7 +27,7 @@ script = ExtResource("2_r60f2")
 
 [node name="WaveManager" type="Node" parent="." node_paths=PackedStringArray("current_game_mode")]
 script = ExtResource("3_sjgfr")
-current_game_mode = NodePath("../Easy")
+current_game_mode = NodePath("../DEBUG")
 basic = ExtResource("4_qnt7u")
 speedy = ExtResource("5_hsbw5")
 zickey = ExtResource("7_ufg46")
