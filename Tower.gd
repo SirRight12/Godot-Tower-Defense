@@ -7,10 +7,6 @@ class_name Tower
 @export var upgrades:Array[Upgrade]
 @onready var utils = find_child("TowerUtils")
 @onready var entity = find_child("Entity")
-@export var tower_range:float = 1.0
-@export var cost:int = 100
-@export var upgrades:Array[Upgrade]
-@onready var utils = find_child("TowerUtils")
 @onready var range_util:TowerRange = get_tower_util("Range")
 @onready var deny_place_util:Area3D = get_tower_util("DenyPlace")
 @onready var game:GameManager = get_parent_node_3d().find_child("GameManager")
