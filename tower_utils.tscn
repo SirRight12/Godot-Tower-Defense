@@ -40,7 +40,7 @@ shape = SubResource("CylinderShape3D_nyyw0")
 
 [node name="CSGCylinder3D" type="CSGCylinder3D" parent="Range/CSGCombiner3D"]
 cast_shadow = 0
-radius = 3.0
+radius = 1.0
 height = 0.001
 sides = 64
 material = SubResource("StandardMaterial3D_6hhwj")
@@ -48,7 +48,7 @@ material = SubResource("StandardMaterial3D_6hhwj")
 [node name="CSGCylinder3D2" type="CSGCylinder3D" parent="Range/CSGCombiner3D"]
 cast_shadow = 0
 operation = 2
-radius = 2.9
+radius = 0.95
 height = 0.001
 sides = 64
 

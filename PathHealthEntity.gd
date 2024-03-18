@@ -14,7 +14,13 @@ func take_damage(dmg):
 	if damage <= 0:
 		damage = 1
 	hp -= damage
+	var money_return = hp
 	if hp <= 0 and !dead:
 		queue_free()
 		dead = true
 		died.emit()
+		if hp < 0:
+			money_return += hp
+		return money_return
+	elif !dead:
+		return money_return

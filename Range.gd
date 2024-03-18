@@ -1,7 +1,10 @@
 extends Area3D
 class_name TowerRange
 var areas = {}
-@export var console:Console
+var size:float:
+	set = change_size
+@onready var shape:CollisionShape3D = find_child("CollisionShape3D")
+@onready var combiner:CSGCombiner3D = find_child("CSGCombiner3D")
 signal enemy_enter()
 func _enter_area(body:Node3D):
 	var entity = get_entity(body)
@@ -28,3 +31,7 @@ func get_first_target():
 	return target
 func get_entity(area):
 	return area.get_parent_node_3d()
+func change_size(val):
+	size = val
+	shape.shape.radius = size
+	combiner.scale = Vector3(size,size,size)

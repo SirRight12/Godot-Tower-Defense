@@ -1,9 +1,9 @@
 [gd_scene load_steps=11 format=3 uid="uid://6lmj8oqgim1u"]
 
 [ext_resource type="Script" path="res://Raycast.gd" id="1_rp8mg"]
-[ext_resource type="PackedScene" uid="uid://dvbmgppw84ix5" path="res://Scout.tscn" id="2_6v55k"]
 [ext_resource type="MeshLibrary" uid="uid://bgy1gpdaaiwnd" path="res://tileset.tres" id="2_rd5dc"]
 [ext_resource type="PackedScene" uid="uid://6i6yh1tiycmt" path="res://game_manager.tscn" id="6_ijg1w"]
+[ext_resource type="Script" path="res://console.gd" id="7_sgvp1"]
 [ext_resource type="PackedScene" uid="uid://13owcifnhg10" path="res://camera_filter.tscn" id="11_gienb"]
 [ext_resource type="PackedScene" uid="uid://c5u3spswx8lr1" path="res://enemy_hp.tscn" id="12_5pf3d"]
 
@@ -37,16 +37,12 @@ progress = 15.4142
 loop = false
 tilt_enabled = false
 
-[node name="Camera3D" type="Camera3D" parent="." node_paths=PackedStringArray("filter_root", "follow_mouse")]
+[node name="Camera3D" type="Camera3D" parent="." node_paths=PackedStringArray("filter_root", "follow_mouse", "console")]
 transform = Transform3D(1, 0, 0, 0, 0.884581, 0.466387, 0, -0.466387, 0.884581, 2.71098, 2.49812, 7.85196)
 script = ExtResource("1_rp8mg")
 filter_root = NodePath("../Control")
 follow_mouse = NodePath("../FollowMouse")
-tower_1 = ExtResource("2_6v55k")
-tower_2 = ExtResource("2_6v55k")
-tower_3 = ExtResource("2_6v55k")
-tower_4 = ExtResource("2_6v55k")
-tower_5 = ExtResource("2_6v55k")
+console = NodePath("../Console")
 
 [node name="Grass" type="GridMap" parent="."]
 mesh_library = ExtResource("2_rd5dc")
@@ -82,5 +78,7 @@ grow_vertical = 1
 
 [node name="GameManager" parent="." instance=ExtResource("6_ijg1w")]
 
-[node name="GunTower" parent="." instance=ExtResource("2_6v55k")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0926783, 0.15, 4.89261)
+[node name="Console" type="Label" parent="."]
+offset_right = 40.0
+offset_bottom = 23.0
+script = ExtResource("7_sgvp1")

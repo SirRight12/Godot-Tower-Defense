@@ -7,7 +7,7 @@ func _init():
 	get = get_damage
 @export var reload_time:float = 1:
 	get = get_reload_time
-@onready var entity = find_child("Entity")
+@export var money_bonus:float = 1.0
 var awaiting_attack = false
 func _process(_delta):
 	if is_placeholder: return

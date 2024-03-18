@@ -1,19 +1,18 @@
 extends Camera3D
 @export var filter_root:Control
 @export var follow_mouse:ColorRect
+@export var console:Console
 @onready var follow_percent = follow_mouse.find_child("HP Percent")
 @onready var starting_size = follow_percent.size.x
 @onready var follow_text = follow_mouse.find_child("Label")
-@export var tower_1:PackedScene
-@export var tower_2:PackedScene
-@export var tower_3:PackedScene
-@export var tower_4:PackedScene
-@export var tower_5:PackedScene
 @onready var filter:ColorRect = filter_root.find_child("Filter")
+@onready var game:GameManager = get_parent().find_child("GameManager")
+@onready var registry:TowerRegistry = game.request_manager(game.MANAGERS.REGISTRY)
+@onready var money:MoneyManager = game.request_manager(game.MANAGERS.MONEY)
 var can_place_color = Color(1.0,1.0,1.0,0.16)
 var can_not_place_color = Color(1.0,0.0,0.08,0.16)
 var place_holder_tower
-var current_selected
+var current_selected = 0
 var placeholder_visible = false
 var deny_placement = false
 var placeholder_position:Vector3
@@ -27,9 +26,14 @@ func show_filter():
 	filter.visible = true
 func hide_filter():
 	filter.visible = false
-func get_placeholder(tower_selected:PackedScene):
+func get_placeholder(idx):
 	revoke_placeholder()
 	show_filter()
+	registry.show_all_tower_deny()
+	var tower_selected = registry.get_tower(idx)
+	place_holder_tower = tower_selected.instantiate()
+	place_holder_tower.is_placeholder = true
+	current_selected = idx
 	show_all_tower_deny()
 	place_holder_tower = tower_selected.instantiate()
 	place_holder_tower.is_placeholder = true
@@ -65,6 +69,11 @@ func handle_cast(event):
 	if deny_placement: return
 	if !place_holder_tower: return
 	if event.is_action_released("pick"):
+		var test_tower = registry.get_tower(current_selected).instantiate()
+		var can_buy = money.request_purchase(test_tower.cost)
+		if !can_buy: return
+		registry.place_tower(current_selected,placeholder_position)
+		revoke_placeholder()
 		hide_all_tower_deny()
 		var tower:Tower = current_selected.instantiate()
 		towers_placed[tower.name] = tower
@@ -95,15 +104,15 @@ func move_tower_to_mouse():
 	placeholder_position = result['position']
 func handle_tower_select(event):
 	if event.is_action_released("select1"):
-		get_placeholder(tower_1)
+		get_placeholder(0)
 	elif event.is_action_released("select2"):
-		get_placeholder(tower_2)
+		get_placeholder(1)
 	elif event.is_action_released("select3"):
-		get_placeholder(tower_3)
+		get_placeholder(2)
 	elif event.is_action_released("select4"):
-		get_placeholder(tower_4)
+		get_placeholder(3)
 	elif event.is_action_released("select5"):
-		get_placeholder(tower_5)
+		get_placeholder(4)
 func handle_cancel(event):
 	if !event.is_action_released("cancel"): return
 	revoke_placeholder()
@@ -146,11 +155,3 @@ func enemy_pick():
 	follow_percent.size.x = new_size
 func _process(_delta):
 	enemy_pick()
-func hide_all_tower_deny():
-	for x in towers_placed:
-		var tower:Tower = towers_placed[x]
-		tower.hide_deny_place()
-func show_all_tower_deny():
-	for x in towers_placed:
-		var tower:Tower = towers_placed[x]
-		tower.show_deny_place()

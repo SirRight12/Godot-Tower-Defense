@@ -1,6 +1,12 @@
 @icon("res://Tower.svg")
 extends Node3D
 class_name Tower
+@export var tower_range:float = 1.0:
+	set = range_changed
+@export var cost:int = 100
+@export var upgrades:Array[Upgrade]
+@onready var utils = find_child("TowerUtils")
+@onready var entity = find_child("Entity")
 @export var tower_range:float = 1.0
 @export var cost:int = 100
 @export var upgrades:Array[Upgrade]
@@ -10,9 +16,16 @@ class_name Tower
 @onready var game:GameManager = get_parent_node_3d().find_child("GameManager")
 @onready var scaler:TimeScale = game.request_manager(game.MANAGERS.TIMESCALE)
 var is_placeholder = false
+func range_changed(val):
+	tower_range = val
+	update_range()
+func update_range():
+	range_util.size = tower_range
 func _init():
 	assert(false,"Tower is an abstract class")
 func _ready():
+	update_range()
+	entity.idle()
 	add_to_group("tower")
 func get_tower_util(util_name:String) -> Node3D:
 	return utils.find_child(util_name)

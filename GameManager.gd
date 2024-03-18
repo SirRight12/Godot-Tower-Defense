@@ -1,6 +1,6 @@
 extends Node
 class_name GameManager
-enum MANAGERS{WAVE,BASE,TIMESCALE,EASY}
+enum MANAGERS{WAVE,BASE,TIMESCALE,EASY,REGISTRY,MONEY}
 func request_manager(type:MANAGERS):
 	match (type):
 		0:
@@ -15,3 +15,9 @@ func request_manager(type:MANAGERS):
 		3:
 			#easy mode
 			return find_child("Easy")
+		4:
+			#Registry
+			return find_child("TowerRegistry")
+		5:
+			#Money
+			return find_child("MoneyManager")
