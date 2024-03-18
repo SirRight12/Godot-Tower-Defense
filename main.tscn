@@ -1,7 +1,7 @@
 [gd_scene load_steps=11 format=3 uid="uid://6lmj8oqgim1u"]
 
 [ext_resource type="Script" path="res://Raycast.gd" id="1_rp8mg"]
-[ext_resource type="PackedScene" path="res://Scout.tscn" id="2_6v55k"]
+[ext_resource type="PackedScene" uid="uid://dvbmgppw84ix5" path="res://Scout.tscn" id="2_6v55k"]
 [ext_resource type="MeshLibrary" uid="uid://bgy1gpdaaiwnd" path="res://tileset.tres" id="2_rd5dc"]
 [ext_resource type="PackedScene" uid="uid://6i6yh1tiycmt" path="res://game_manager.tscn" id="6_ijg1w"]
 [ext_resource type="PackedScene" uid="uid://13owcifnhg10" path="res://camera_filter.tscn" id="11_gienb"]
@@ -81,3 +81,6 @@ grow_vertical = 1
 [node name="FollowMouse" parent="." instance=ExtResource("12_5pf3d")]
 
 [node name="GameManager" parent="." instance=ExtResource("6_ijg1w")]
+
+[node name="GunTower" parent="." instance=ExtResource("2_6v55k")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0926783, 0.15, 4.89261)

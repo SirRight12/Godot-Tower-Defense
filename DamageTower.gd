@@ -7,6 +7,7 @@ func _init():
 	get = get_damage
 @export var reload_time:float = 1:
 	get = get_reload_time
+@onready var entity = find_child("Entity")
 var awaiting_attack = false
 func _process(_delta):
 	if is_placeholder: return
@@ -14,6 +15,9 @@ func _process(_delta):
 	if range_util.areas.size() < 1: return
 	awaiting_attack = true
 	var target = range_util.get_first_target()
+	entity.look_at(target.position)
+	entity.rotation.x = 0
+	entity.rotation.z = 0
 	_shoot(target)
 	await timeout(reload_time)
 	awaiting_attack = false
