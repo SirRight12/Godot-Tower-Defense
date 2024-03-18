@@ -1,16 +1,11 @@
-[gd_scene load_steps=16 format=3 uid="uid://6lmj8oqgim1u"]
+[gd_scene load_steps=11 format=3 uid="uid://6lmj8oqgim1u"]
 
 [ext_resource type="Script" path="res://Raycast.gd" id="1_rp8mg"]
-[ext_resource type="PackedScene" uid="uid://bhug5g0ojavct" path="res://Scout.tscn" id="2_6v55k"]
 [ext_resource type="MeshLibrary" uid="uid://bgy1gpdaaiwnd" path="res://tileset.tres" id="2_rd5dc"]
-[ext_resource type="Script" path="res://Base.gd" id="3_ng37n"]
-[ext_resource type="Script" path="res://console.gd" id="4_yyfi0"]
-[ext_resource type="Script" path="res://TimeScale.gd" id="5_x0t1g"]
-[ext_resource type="PackedScene" uid="uid://db1xxjnsoxss6" path="res://basic.tscn" id="6_7payq"]
-[ext_resource type="PackedScene" uid="uid://bc2nx44jw4f0n" path="res://easy_mode.tscn" id="6_bcsvp"]
-[ext_resource type="Script" path="res://WaveManager.gd" id="6_sqo0v"]
-[ext_resource type="PackedScene" uid="uid://mm0hhwjfr6v2" path="res://speedy.tscn" id="7_lhytt"]
+[ext_resource type="PackedScene" uid="uid://6i6yh1tiycmt" path="res://game_manager.tscn" id="6_ijg1w"]
+[ext_resource type="Script" path="res://console.gd" id="7_sgvp1"]
 [ext_resource type="PackedScene" uid="uid://13owcifnhg10" path="res://camera_filter.tscn" id="11_gienb"]
+[ext_resource type="PackedScene" uid="uid://c5u3spswx8lr1" path="res://enemy_hp.tscn" id="12_5pf3d"]
 
 [sub_resource type="Curve3D" id="Curve3D_2hm1b"]
 _data = {
@@ -42,16 +37,12 @@ progress = 15.4142
 loop = false
 tilt_enabled = false
 
-[node name="Camera3D" type="Camera3D" parent="." node_paths=PackedStringArray("console", "filter_root")]
+[node name="Camera3D" type="Camera3D" parent="." node_paths=PackedStringArray("filter_root", "follow_mouse", "console")]
 transform = Transform3D(1, 0, 0, 0, 0.884581, 0.466387, 0, -0.466387, 0.884581, 2.71098, 2.49812, 7.85196)
 script = ExtResource("1_rp8mg")
-console = NodePath("../Console")
 filter_root = NodePath("../Control")
-tower_1 = ExtResource("2_6v55k")
-tower_2 = ExtResource("2_6v55k")
-tower_3 = ExtResource("2_6v55k")
-tower_4 = ExtResource("2_6v55k")
-tower_5 = ExtResource("2_6v55k")
+follow_mouse = NodePath("../FollowMouse")
+console = NodePath("../Console")
 
 [node name="Grass" type="GridMap" parent="."]
 mesh_library = ExtResource("2_rd5dc")
@@ -76,38 +67,18 @@ environment = SubResource("Environment_s4sxu")
 transform = Transform3D(0.470701, 0.580386, -0.664524, 0.140116, 0.694448, 0.705769, 0.871096, -0.425317, 0.245556, -7.13201, 1.42291, 5.33234)
 shadow_enabled = true
 
-[node name="Console" type="Label" parent="."]
-offset_right = 40.0
-offset_bottom = 23.0
-script = ExtResource("4_yyfi0")
-
 [node name="Control" parent="." instance=ExtResource("11_gienb")]
 anchors_preset = 0
 anchor_right = 0.0
 anchor_bottom = 0.0
 grow_horizontal = 1
 grow_vertical = 1
-mouse_filter = 2
 
-[node name="Base" type="Node" parent="."]
-script = ExtResource("3_ng37n")
-max_hp = 100
-temp_shield = 5
+[node name="FollowMouse" parent="." instance=ExtResource("12_5pf3d")]
 
-[node name="TimeScaleManager" type="Node" parent="."]
-script = ExtResource("5_x0t1g")
+[node name="GameManager" parent="." instance=ExtResource("6_ijg1w")]
 
-[node name="WaveManager" type="Node" parent="." node_paths=PackedStringArray("current_game_mode")]
-script = ExtResource("6_sqo0v")
-current_game_mode = NodePath("../Easy")
-basic = ExtResource("6_7payq")
-speedy = ExtResource("7_lhytt")
-
-[node name="Easy" parent="." instance=ExtResource("6_bcsvp")]
-
-[node name="FollowMouse" type="ColorRect" parent="."]
-offset_left = 928.0
-offset_top = 211.0
-offset_right = 1044.0
-offset_bottom = 247.0
-color = Color(0, 0.737255, 0, 1)
+[node name="Console" type="Label" parent="."]
+offset_right = 40.0
+offset_bottom = 23.0
+script = ExtResource("7_sgvp1")

@@ -1,19 +1,20 @@
 extends Camera3D
-@export var console:Console
 @export var filter_root:Control
 @export var follow_mouse:ColorRect
-@export var tower_1:PackedScene
-@export var tower_2:PackedScene
-@export var tower_3:PackedScene
-@export var tower_4:PackedScene
-@export var tower_5:PackedScene
+@export var console:Console
+@onready var follow_percent = follow_mouse.find_child("HP Percent")
+@onready var starting_size = follow_percent.size.x
+@onready var follow_text = follow_mouse.find_child("Label")
 @onready var filter:ColorRect = filter_root.find_child("Filter")
+@onready var game:GameManager = get_parent().find_child("GameManager")
+@onready var registry:TowerRegistry = game.request_manager(game.MANAGERS.REGISTRY)
+@onready var money:MoneyManager = game.request_manager(game.MANAGERS.MONEY)
 var can_place_color = Color(1.0,1.0,1.0,0.16)
 var can_not_place_color = Color(1.0,0.0,0.08,0.16)
 var place_holder_tower
-var current_selected
+var current_selected = 0
 var placeholder_visible = false
-var is_on_path = false
+var deny_placement = false
 var placeholder_position:Vector3
 var placed_tower = false
 var inspecting_tower = false
@@ -24,11 +25,14 @@ func show_filter():
 	filter.visible = true
 func hide_filter():
 	filter.visible = false
-func get_placeholder(tower_selected:PackedScene):
+func get_placeholder(idx):
 	revoke_placeholder()
 	show_filter()
+	registry.show_all_tower_deny()
+	var tower_selected = registry.get_tower(idx)
 	place_holder_tower = tower_selected.instantiate()
-	current_selected = tower_selected
+	place_holder_tower.is_placeholder = true
+	current_selected = idx
 	get_parent_node_3d().add_child(place_holder_tower)
 	place_holder_tower.show_range()
 	move_tower_to_mouse()
@@ -36,7 +40,7 @@ func revoke_placeholder():
 	if !place_holder_tower: return
 	hide_filter()
 	current_selected = false
-	is_on_path = false
+	deny_placement = false
 	place_holder_tower.queue_free()
 	place_holder_tower = false
 func _unhandled_input(event):
@@ -45,38 +49,26 @@ func _unhandled_input(event):
 	handle_tower_select(event)
 	handle_cancel(event)
 	handle_tower_pick(event)
-	handle_enemy_pick(event)
-func cast(mask:int =1) -> Dictionary:
+func cast(mask:int = 1) -> Dictionary:
 	var world = get_world_3d().direct_space_state
 	var mouse = get_viewport().get_mouse_position()
 	var from = project_ray_origin(mouse)
 	var to = from + project_ray_normal(mouse) * 1000
 	var query = PhysicsRayQueryParameters3D.create(from,to)
+	query.set_collide_with_areas(true)
 	if mask:
 		query.set_collision_mask(mask)
 	var result = world.intersect_ray(query)
 	return result
 func handle_cast(event):
-	if is_on_path: return
+	if deny_placement: return
 	if !place_holder_tower: return
 	if event.is_action_released("pick"):
-		console.log_clear()
-		console.log_out(is_on_path)
-		console.log_ln()
-		console.log_out("init")
-		console.log_ln()
-		var tower = current_selected.instantiate()
-		tower.hide_all()
-		console.log_out("tower instantiated!")
-		console.log_ln()
-		tower.set_position(placeholder_position)		
-		console.log_out("tower position set!")
-		console.log_ln()
+		var test_tower = registry.get_tower(current_selected).instantiate()
+		var can_buy = money.request_purchase(test_tower.cost)
+		if !can_buy: return
+		registry.place_tower(current_selected,placeholder_position)
 		revoke_placeholder()
-		console.log_out("placeholder revoked!")
-		console.log_ln()
-		get_parent_node_3d().add_child(tower)
-		console.log_out("added to scene!")
 		placed_tower = true
 func handle_move(event):
 	if !place_holder_tower: return
@@ -85,27 +77,30 @@ func handle_move(event):
 func move_tower_to_mouse():
 	var result = cast()
 	if !result:
-		is_on_path = true
+		deny_placement = true
 		return
 	if result['collider'].is_in_group("path"):
 		set_filter(can_not_place_color)
-		is_on_path = true
+		deny_placement = true
 	else:
 		set_filter(can_place_color)
-		is_on_path = false
+		deny_placement = false
+	if place_holder_tower.check_deny():
+		set_filter(can_not_place_color)
+		deny_placement = true
 	place_holder_tower.set_position(result['position'])
 	placeholder_position = result['position']
 func handle_tower_select(event):
 	if event.is_action_released("select1"):
-		get_placeholder(tower_1)
+		get_placeholder(0)
 	elif event.is_action_released("select2"):
-		get_placeholder(tower_2)
+		get_placeholder(1)
 	elif event.is_action_released("select3"):
-		get_placeholder(tower_3)
+		get_placeholder(2)
 	elif event.is_action_released("select4"):
-		get_placeholder(tower_4)
+		get_placeholder(3)
 	elif event.is_action_released("select5"):
-		get_placeholder(tower_5)
+		get_placeholder(4)
 func handle_cancel(event):
 	if !event.is_action_released("cancel"): return
 	revoke_placeholder()
@@ -119,28 +114,32 @@ func handle_tower_pick(event):
 	if event.is_action_released("pick"):
 		var result = cast(2)
 		if !result:
-			inspected_tower.hide_all()
-			inspecting_tower = false
-			inspected_tower = false
+			if inspected_tower:
+				inspected_tower.hide_all()
+				inspecting_tower = false
+				inspected_tower = false
 			return
 		if result['collider'].name != "TowerCollider":
 			return
 		if inspected_tower:
 			inspected_tower.hide_all()
-		var parent = result['collider'].get_parent_node_3d()
+		var parent:Tower = result['collider'].get_parent_node_3d()
+		parent.show_all()
 		inspecting_tower = true
 		inspected_tower = parent
 
 
-func handle_enemy_pick(event):
-	if not event is InputEventMouseMotion:
-		console.log_out("not mouse motion")
-		return
-	var result = cast(4)
-	console.log_clear()
-	console.log_out(result)
+func enemy_pick():
+	var result = cast(8)
 	if !result: 
 		follow_mouse.visible = false
 		return
 	follow_mouse.visible = true
-	#follow_mouse.position = get_viewport().get_mouse_position() 
+	follow_mouse.position = get_viewport().get_mouse_position()
+	var entity = result['collider'].get_parent_node_3d()
+	follow_text.text = str(entity.hp) + "/" + str(entity.max_hp)
+	var percent:float = float(entity.hp) / float(entity.max_hp)
+	var new_size = starting_size * percent
+	follow_percent.size.x = new_size
+func _process(_delta):
+	enemy_pick()

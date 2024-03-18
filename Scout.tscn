@@ -1,28 +1,20 @@
-[gd_scene load_steps=6 format=3 uid="uid://bhug5g0ojavct"]
+[gd_scene load_steps=5 format=3 uid="uid://dvbmgppw84ix5"]
 
-[ext_resource type="Script" path="res://DamageTower.gd" id="1_dvomr"]
+[ext_resource type="PackedScene" uid="uid://c8re26m6egyhe" path="res://scout_entity.tscn" id="2_ou0um"]
 [ext_resource type="PackedScene" uid="uid://clx7bg4kof7n2" path="res://tower_utils.tscn" id="2_ujq4i"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_p1bai"]
-albedo_color = Color(1, 1, 0, 1)
-
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_mqbjm"]
-material = SubResource("StandardMaterial3D_p1bai")
-radius = 0.125
-height = 0.5
+[ext_resource type="Script" path="res://GunTower.gd" id="3_avxn1"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_8io4t"]
 radius = 0.125
 height = 0.5
 
-[node name="DamageTower" type="Node3D"]
-script = ExtResource("1_dvomr")
+[node name="GunTower" type="Node3D"]
+script = ExtResource("3_avxn1")
+money_bonus = 2.0
+tower_range = 2.0
 
-[node name="Tower" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Tower"]
-mesh = SubResource("CapsuleMesh_mqbjm")
+[node name="Entity" parent="." instance=ExtResource("2_ou0um")]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 0, 0)
 
 [node name="TowerCollider" type="StaticBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)

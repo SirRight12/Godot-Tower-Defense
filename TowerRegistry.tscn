@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://2e3x2siibwu"]
+
+[ext_resource type="Script" path="res://TowerRegistry.gd" id="1_q22bw"]
+[ext_resource type="PackedScene" uid="uid://dvbmgppw84ix5" path="res://Scout.tscn" id="2_p1c5g"]
+
+[node name="TowerRegistry" type="Node"]
+script = ExtResource("1_q22bw")
+towers = Array[PackedScene]([ExtResource("2_p1c5g"), null, null, null, null])

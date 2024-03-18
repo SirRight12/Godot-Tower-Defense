@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://PathHealthEntity.gd" id="1_8jmye"]
 
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_j6tpj"]
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_d5sv4"]
 radius = 0.125
 height = 0.5
 
@@ -10,30 +10,29 @@ height = 0.5
 radius = 0.125
 height = 0.5
 
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_q4jkf"]
-radius = 0.125
-height = 0.5
+[sub_resource type="BoxShape3D" id="BoxShape3D_ccrqn"]
+size = Vector3(0.2, 0.1, 0.2)
 
-[node name="PathHealthEntity" type="Node3D"]
+[node name="Basic" type="Node3D"]
 script = ExtResource("1_8jmye")
+max_hp = 4
+speed = 0.75
 
 [node name="Entity" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.4, 0)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Entity"]
-mesh = SubResource("CapsuleMesh_j6tpj")
+mesh = SubResource("CapsuleMesh_d5sv4")
 skeleton = NodePath("../..")
 
 [node name="Hitbox" type="Area3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.4, 0)
+collision_layer = 8
+collision_mask = 8
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Hitbox"]
 shape = SubResource("CapsuleShape3D_6cr5x")
 
-[node name="EnemyPicker" type="StaticBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.4, 0)
-collision_layer = 8
-collision_mask = 8
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="EnemyPicker"]
-shape = SubResource("CapsuleShape3D_q4jkf")
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="Hitbox"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.272755, 0)
+shape = SubResource("BoxShape3D_ccrqn")
