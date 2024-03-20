@@ -12,9 +12,7 @@ func _enter_area(body:Node3D):
 	if entity.speed < 0: return
 	areas[str(body)] = body
 func _exit_area(body):
-	print(body)
 	areas.erase(str(body))
-	print(areas)
 func _ready():
 	area_entered.connect(_enter_area)
 	area_exited.connect(_exit_area)
@@ -23,7 +21,6 @@ func get_first_target():
 	var dict = {}
 	for x in areas:
 		var entity = get_entity(areas[x])
-		print(entity)
 		places.append(entity.progress)
 		places.sort()
 		dict[entity.progress] = entity

@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://c8re26m6egyhe"]
+[gd_scene load_steps=25 format=3 uid="uid://c8re26m6egyhe"]
 
 [ext_resource type="Material" uid="uid://1dcue1hvh6l7" path="res://gun_metal.tres" id="1_d5k1f"]
 [ext_resource type="Script" path="res://TowerAnimations.gd" id="1_tyhf2"]
@@ -42,6 +42,8 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_73q10")
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hatf8"]
+
 [sub_resource type="ArrayMesh" id="ArrayMesh_ipfsx"]
 _surfaces = [{
 "aabb": AABB(-0.03125, 0.15625, 0.015625, 0.03126, 0.03126, 0.03126),
@@ -64,7 +66,7 @@ _surfaces = [{
 "format": 34896613399,
 "index_count": 36,
 "index_data": PackedByteArray(0, 0, 1, 0, 2, 0, 2, 0, 1, 0, 3, 0, 4, 0, 5, 0, 6, 0, 6, 0, 5, 0, 7, 0, 8, 0, 9, 0, 10, 0, 10, 0, 9, 0, 11, 0, 12, 0, 13, 0, 14, 0, 14, 0, 13, 0, 15, 0, 16, 0, 17, 0, 18, 0, 18, 0, 17, 0, 19, 0, 20, 0, 21, 0, 22, 0, 22, 0, 21, 0, 23, 0),
-"material": SubResource("StandardMaterial3D_nsop7"),
+"material": SubResource("StandardMaterial3D_hatf8"),
 "name": "material_0",
 "primitive": 3,
 "uv_scale": Vector4(0, 0, 0, 0),
@@ -775,7 +777,7 @@ skeleton = NodePath("")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.078125, 0)
 
 [node name="cube2" type="MeshInstance3D" parent="RootBone/UpperBody/Head"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.015625, -0.15625, -0.03125)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0152272, -0.15625, -0.0301916)
 mesh = SubResource("ArrayMesh_adck2")
 skeleton = NodePath("")
 

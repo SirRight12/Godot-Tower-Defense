@@ -10,6 +10,7 @@ height = 0.5
 
 [node name="GunTower" type="Node3D"]
 script = ExtResource("3_avxn1")
+reload_time = 0.9
 money_bonus = 2.0
 tower_range = 2.0
 

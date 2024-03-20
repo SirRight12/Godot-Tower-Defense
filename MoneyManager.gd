@@ -11,8 +11,6 @@ func sub(amt):
 	money_display.text = "$" + str(amount)
 func request_purchase(price):
 	if price <= amount:
-		money_display.text = "Can't Buy"
 		sub(price)
 		return true
-	money_display.text = "Can Buy"
 	return false

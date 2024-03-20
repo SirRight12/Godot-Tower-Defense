@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://c8mpj1ian0gp1"]
+
+[ext_resource type="PackedScene" uid="uid://c8re26m6egyhe" path="res://scout_entity.tscn" id="1_0u2wi"]
+[ext_resource type="Script" path="res://scout_viewport_animations.gd" id="2_uwgqf"]
+
+[sub_resource type="Environment" id="Environment_175ek"]
+
+[node name="Node3D" type="Node3D"]
+
+[node name="Camera3D" type="Camera3D" parent="."]
+environment = SubResource("Environment_175ek")
+fov = 60.3
+size = 0.335
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.844328, 0.205052, -0.495039, 0, 0.92388, 0.382683, 0.535827, -0.32311, 0.780057, -0.397749, 0.186524, -0.0468163)
+shadow_enabled = true
+
+[node name="Entity" parent="." instance=ExtResource("1_0u2wi")]
+transform = Transform3D(-0.430511, 0, 0.902585, 0, 1, 0, -0.902585, 0, -0.430511, 0, -0.091, -0.212)
+script = ExtResource("2_uwgqf")
+
+[editable path="Entity"]
