@@ -10,8 +10,7 @@ grow_vertical = 2
 mouse_filter = 2
 
 [node name="Filter" type="ColorRect" parent="."]
-visible = false
-layout_mode = 0
+layout_mode = 2
 offset_right = 1152.0
 offset_bottom = 648.0
 mouse_filter = 2

@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://3u60fia4x4mj"]
+
+[ext_resource type="Script" path="res://force_anims.gd" id="1_ohfdj"]
+
+[node name="ViewportPlayer" type="Node"]
+script = ExtResource("1_ohfdj")

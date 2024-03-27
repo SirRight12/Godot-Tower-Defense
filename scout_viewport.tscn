@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://c8mpj1ian0gp1"]
+[gd_scene load_steps=5 format=3 uid="uid://c8mpj1ian0gp1"]
 
 [ext_resource type="PackedScene" uid="uid://c8re26m6egyhe" path="res://scout_entity.tscn" id="1_0u2wi"]
 [ext_resource type="Script" path="res://scout_viewport_animations.gd" id="2_uwgqf"]
+[ext_resource type="PackedScene" uid="uid://3u60fia4x4mj" path="res://viewport_player.tscn" id="3_xtqkr"]
 
 [sub_resource type="Environment" id="Environment_175ek"]
 
@@ -19,5 +20,8 @@ shadow_enabled = true
 [node name="Entity" parent="." instance=ExtResource("1_0u2wi")]
 transform = Transform3D(-0.430511, 0, 0.902585, 0, 1, 0, -0.902585, 0, -0.430511, 0, -0.091, -0.212)
 script = ExtResource("2_uwgqf")
+
+[node name="ViewportPlayer" parent="." node_paths=PackedStringArray("anim_node") instance=ExtResource("3_xtqkr")]
+anim_node = NodePath("../Entity")
 
 [editable path="Entity"]

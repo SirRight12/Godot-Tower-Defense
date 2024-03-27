@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://6i6yh1tiycmt"]
+[gd_scene load_steps=17 format=3 uid="uid://6i6yh1tiycmt"]
 
 [ext_resource type="Script" path="res://Base.gd" id="1_asqr1"]
 [ext_resource type="Script" path="res://GameManager.gd" id="1_er8mo"]
@@ -18,6 +18,9 @@
 
 [sub_resource type="World3D" id="World3D_ajp6u"]
 environment = SubResource("Environment_v7e1u")
+
+[sub_resource type="LabelSettings" id="LabelSettings_vosub"]
+font_color = Color(0.223529, 0.713726, 0, 1)
 
 [node name="GameManager" type="Node"]
 script = ExtResource("1_er8mo")
@@ -51,33 +54,10 @@ money_display = NodePath("../Control/Label")
 
 [node name="Control" type="Control" parent="."]
 layout_mode = 3
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -576.0
-offset_top = -324.0
-offset_right = 576.0
-offset_bottom = 324.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="Label" type="Label" parent="Control"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -11.5
-offset_right = 20.0
-offset_bottom = 11.5
-grow_horizontal = 2
-grow_vertical = 2
-text = "$100
-"
+anchors_preset = 0
+offset_right = 1152.0
+offset_bottom = 648.0
+mouse_filter = 2
 
 [node name="Control" type="Control" parent="Control"]
 layout_mode = 1
@@ -85,8 +65,12 @@ anchor_left = 0.5
 anchor_top = 0.898
 anchor_right = 0.5
 anchor_bottom = 0.898
+offset_left = -250.0
+offset_top = -50.0
+offset_right = 250.0
+offset_bottom = 50.0
 grow_horizontal = 2
-grow_vertical = 0
+grow_vertical = 2
 
 [node name="ColorRect" type="ColorRect" parent="Control/Control"]
 layout_mode = 1
@@ -103,15 +87,23 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.137255, 0.309804, 0.258824, 1)
 
-[node name="SubViewportContainer" type="SubViewportContainer" parent="Control/Control"]
-layout_mode = 0
+[node name="Control" type="Control" parent="Control/Control"]
+layout_mode = 1
+anchor_left = 0.1
+anchor_top = 0.5
+anchor_right = 0.1
+anchor_bottom = 0.5
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="Control/Control/Control"]
+layout_mode = 1
+anchors_preset = -1
 offset_left = -50.0
 offset_top = -50.0
 offset_right = 50.0
 offset_bottom = 50.0
 stretch = true
 
-[node name="SubViewport" type="SubViewport" parent="Control/Control/SubViewportContainer"]
+[node name="SubViewport" type="SubViewport" parent="Control/Control/Control/SubViewportContainer"]
 own_world_3d = true
 world_3d = SubResource("World3D_ajp6u")
 transparent_bg = true
@@ -119,4 +111,18 @@ handle_input_locally = false
 size = Vector2i(100, 100)
 render_target_update_mode = 4
 
-[node name="Node3D" parent="Control/Control/SubViewportContainer/SubViewport" instance=ExtResource("13_2i8tw")]
+[node name="Node3D" parent="Control/Control/Control/SubViewportContainer/SubViewport" instance=ExtResource("13_2i8tw")]
+
+[node name="Label" type="Label" parent="Control"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.283
+anchor_top = 0.838
+anchor_right = 0.283
+anchor_bottom = 0.838
+offset_right = 37.0
+grow_horizontal = 0
+grow_vertical = 2
+text = "$100
+"
+label_settings = SubResource("LabelSettings_vosub")
