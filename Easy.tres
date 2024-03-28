@@ -1,0 +1,37 @@
+[gd_resource type="Resource" script_class="GameMode" load_steps=7 format=3 uid="uid://di56oywi876w2"]
+
+[ext_resource type="Script" path="res://GameMode.gd" id="1_8bhq4"]
+[ext_resource type="Script" path="res://Wave.gd" id="2_13fv8"]
+
+[sub_resource type="Resource" id="Resource_wpq7h"]
+script = ExtResource("2_13fv8")
+delay = 0
+bonus = 0
+enemies = Array[int]([0, 0, 0, 0])
+times = Array[int]([0, 1000, 1000, 1000])
+
+[sub_resource type="Resource" id="Resource_qwc00"]
+script = ExtResource("2_13fv8")
+delay = 4
+bonus = 100
+enemies = Array[int]([0, 0, 0, 0, 0, 0])
+times = Array[int]([0, 1000, 1000, 1000, 1000, 1000])
+
+[sub_resource type="Resource" id="Resource_3vsx7"]
+script = ExtResource("2_13fv8")
+delay = 2
+bonus = 100
+enemies = Array[int]([0, 0, 0, 0, 0, 0, 0, 0])
+times = Array[int]([0, 1000, 1000, 1000, 1000, 1000, 1000, 1000])
+
+[sub_resource type="Resource" id="Resource_hsc00"]
+script = ExtResource("2_13fv8")
+delay = 4
+bonus = 150
+enemies = Array[int]([0, 0, 0, 0, 0, 0, 0, 0, 0, 0])
+times = Array[int]([0, 1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000])
+
+[resource]
+script = ExtResource("1_8bhq4")
+test = false
+waves = Array[ExtResource("2_13fv8")]([SubResource("Resource_wpq7h"), SubResource("Resource_qwc00"), SubResource("Resource_3vsx7"), SubResource("Resource_hsc00")])

@@ -104,6 +104,7 @@ func handle_tower_select(event):
 func handle_cancel(event):
 	if !event.is_action_released("cancel"): return
 	revoke_placeholder()
+	registry.hide_all_tower_deny()
 func handle_tower_pick(event):
 	if placed_tower:
 		placed_tower = false

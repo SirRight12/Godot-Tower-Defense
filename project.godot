@@ -59,7 +59,3 @@ cancel={
 3d_physics/layer_3="Deny Placement"
 3d_physics/layer_4="Enemy Picking"
 3d_physics/layer_7="Enemy Detection"
-
-[rendering]
-
-renderer/rendering_method="gl_compatibility"

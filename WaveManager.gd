@@ -1,19 +1,23 @@
 extends Node
 class_name WaveManager
 @export var current_game_mode:GameMode
-@export var wave_delay:float = 5
 @export var basic:PackedScene
 @export var speedy:PackedScene
 @export var zickey: PackedScene
 @onready var enemy_types:Array[PackedScene] = [basic,speedy,zickey]
 @onready var parent:Node3D = get_parent().get_parent()
+@onready var game:GameManager = get_parent()
+@onready var money:MoneyManager = game.request_manager(game.MANAGERS.MONEY)
+@onready var start_node = $"../Start"
+@onready var start_button = $"../Start/Button"
 var time_scale_manager:TimeScale
 var current_wave = 0
 var waves:Array
 var enemies_left
 func _ready():
 	time_scale_manager = get_parent().find_child("TimeScaleManager")
-	#remove later in favor of a UI start button
+	await start_button.pressed
+	start_node.queue_free()
 	start_waves()
 func start_waves():
 	waves = current_game_mode.unpack_waves()
@@ -22,7 +26,10 @@ func start_wave(idx):
 	if waves.size() == idx: 
 		print("beat game")
 		return
-	var wave = waves[idx]
+	var wave_data = waves[idx]
+	var wave = wave_data['wave']
+	money.add(wave_data['bonus'])
+	await timeout(wave_data['delay'])
 	enemies_left = wave.size()
 	for x in len(wave):
 		var enemy_data = wave[x]
@@ -35,7 +42,6 @@ func start_wave(idx):
 func check_wave_over():
 	if enemies_left <= 0:
 		current_wave += 1
-		await(timeout(wave_delay))
 		start_wave(current_wave)
 func enemy_die():
 	enemies_left -= 1

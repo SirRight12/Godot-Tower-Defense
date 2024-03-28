@@ -1,18 +1,34 @@
-extends Node
+@tool
+extends Resource
 class_name GameMode
+@export var test:bool:
+	set = set_test
+func set_test(val):
+	test = false
+	#print(unpack_waves())
 @export var waves:Array[Wave]
 func unpack_waves():
 	var waves_array = []
-	for x in len(waves):
+	var children = waves
+	for x in len(children):
 		var wave_return = []
-		var wave = waves[x]
-		var enemies = wave.enemies
+		var child = waves[x]
+		print(child.enemies)
+		var enemies = child.enemies
+		print(enemies.size())
 		wave_return.resize(enemies.size())
-		var times = wave.times
+		var times = child.times
+		var wave_delay = child.delay
+		var wave_bonus = child.bonus
 		for y in len(enemies):
 			wave_return[y] = {
 				"type": enemies[y],
 				"delay": times[y],
 			}
-		waves_array.append(wave_return)
+		var return_item = {
+			"wave": wave_return,
+			"delay": wave_delay,
+			"bonus": wave_bonus,
+		}
+		waves_array.append(return_item)
 	return waves_array

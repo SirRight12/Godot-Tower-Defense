@@ -1,0 +1,30 @@
+[gd_resource type="Resource" script_class="GameMode" load_steps=6 format=3 uid="uid://b66jgycrpdtux"]
+
+[ext_resource type="Script" path="res://GameMode.gd" id="1_j6b72"]
+[ext_resource type="Script" path="res://Wave.gd" id="2_lhswe"]
+
+[sub_resource type="Resource" id="Resource_34er3"]
+script = ExtResource("2_lhswe")
+delay = 0
+bonus = 0
+enemies = Array[int]([0])
+times = Array[int]([0])
+
+[sub_resource type="Resource" id="Resource_0oq4a"]
+script = ExtResource("2_lhswe")
+delay = 3
+bonus = 100
+enemies = Array[int]([1])
+times = Array[int]([0])
+
+[sub_resource type="Resource" id="Resource_wwxv0"]
+script = ExtResource("2_lhswe")
+delay = 2
+bonus = 100
+enemies = Array[int]([2])
+times = Array[int]([0])
+
+[resource]
+script = ExtResource("1_j6b72")
+test = false
+waves = Array[ExtResource("2_lhswe")]([SubResource("Resource_34er3"), SubResource("Resource_0oq4a"), SubResource("Resource_wwxv0")])

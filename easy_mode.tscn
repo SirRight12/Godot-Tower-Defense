@@ -1,18 +1,3 @@
-[gd_scene load_steps=5 format=3 uid="uid://bc2nx44jw4f0n"]
+[gd_scene format=3 uid="uid://bc2nx44jw4f0n"]
 
-[ext_resource type="Script" path="res://GameMode.gd" id="1_t8o8a"]
-[ext_resource type="Script" path="res://Wave.gd" id="2_yhfk2"]
-
-[sub_resource type="Resource" id="Resource_g8lfe"]
-script = ExtResource("2_yhfk2")
-enemies = Array[int]([0, 0, 0, 0, 0])
-times = Array[int]([0, 1000, 1000, 1000, 1000])
-
-[sub_resource type="Resource" id="Resource_iitn4"]
-script = ExtResource("2_yhfk2")
-enemies = Array[int]([0, 0, 0, 0, 0, 0, 0])
-times = Array[int]([0, 1000, 1000, 1000, 1000, 1000, 1000])
-
-[node name="Easy" type="Node"]
-script = ExtResource("1_t8o8a")
-waves = Array[ExtResource("2_yhfk2")]([SubResource("Resource_g8lfe"), SubResource("Resource_iitn4")])
+[node name="Node" type="Node"]

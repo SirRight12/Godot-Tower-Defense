@@ -8,7 +8,6 @@ var towers_placed: Dictionary = {}
 func set_array(val):
 	towers = val
 	towers.resize(5)
-	print(val)
 func place_tower(idx,position):
 	hide_all_tower_deny()
 	var tower:Tower = towers[idx].instantiate()

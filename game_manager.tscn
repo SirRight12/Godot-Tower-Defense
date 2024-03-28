@@ -1,14 +1,13 @@
-[gd_scene load_steps=17 format=3 uid="uid://6i6yh1tiycmt"]
+[gd_scene load_steps=16 format=3 uid="uid://6i6yh1tiycmt"]
 
 [ext_resource type="Script" path="res://Base.gd" id="1_asqr1"]
 [ext_resource type="Script" path="res://GameManager.gd" id="1_er8mo"]
 [ext_resource type="Script" path="res://TimeScale.gd" id="2_r60f2"]
 [ext_resource type="Script" path="res://WaveManager.gd" id="3_sjgfr"]
 [ext_resource type="PackedScene" uid="uid://db1xxjnsoxss6" path="res://basic.tscn" id="4_qnt7u"]
+[ext_resource type="Resource" uid="uid://di56oywi876w2" path="res://Easy.tres" id="5_38d6w"]
 [ext_resource type="PackedScene" uid="uid://bwc1i6myddq0d" path="res://speedy.tscn" id="5_hsbw5"]
-[ext_resource type="PackedScene" uid="uid://bc2nx44jw4f0n" path="res://easy_mode.tscn" id="6_i2gm1"]
 [ext_resource type="PackedScene" uid="uid://cty70vo8qkw5f" path="res://zickey.tscn" id="7_ufg46"]
-[ext_resource type="PackedScene" uid="uid://ch5s0twkoxwvc" path="res://DEBUG.tscn" id="9_h2sms"]
 [ext_resource type="Script" path="res://TowerRegistry.gd" id="10_erg5a"]
 [ext_resource type="PackedScene" uid="uid://dvbmgppw84ix5" path="res://Scout.tscn" id="11_pbg38"]
 [ext_resource type="Script" path="res://MoneyManager.gd" id="12_jkxa6"]
@@ -33,16 +32,12 @@ temp_shield = 5
 [node name="TimeScaleManager" type="Node" parent="."]
 script = ExtResource("2_r60f2")
 
-[node name="WaveManager" type="Node" parent="." node_paths=PackedStringArray("current_game_mode")]
+[node name="WaveManager" type="Node" parent="."]
 script = ExtResource("3_sjgfr")
-current_game_mode = NodePath("../DEBUG")
+current_game_mode = ExtResource("5_38d6w")
 basic = ExtResource("4_qnt7u")
 speedy = ExtResource("5_hsbw5")
 zickey = ExtResource("7_ufg46")
-
-[node name="Easy" parent="." instance=ExtResource("6_i2gm1")]
-
-[node name="DEBUG" parent="." instance=ExtResource("9_h2sms")]
 
 [node name="TowerRegistry" type="Node" parent="."]
 script = ExtResource("10_erg5a")
@@ -50,7 +45,6 @@ towers = Array[PackedScene]([ExtResource("11_pbg38"), ExtResource("11_pbg38"), E
 
 [node name="MoneyManager" type="Node" parent="." node_paths=PackedStringArray("money_display")]
 script = ExtResource("12_jkxa6")
-starting_amount = 300
 money_display = NodePath("../Control/Label")
 
 [node name="Control" type="Control" parent="."]
@@ -128,8 +122,21 @@ text = "$100
 "
 label_settings = SubResource("LabelSettings_vosub")
 
-[node name="StartGame" type="Control" parent="."]
+[node name="Start" type="Control" parent="."]
+custom_minimum_size = Vector2(100, 40)
 layout_mode = 3
+anchor_left = 0.5
+anchor_top = 0.033
+anchor_right = 0.5
+anchor_bottom = 0.033
+offset_left = -70.0
+offset_right = 30.0
+offset_bottom = 40.0
+grow_horizontal = 2
+
+[node name="ColorRect" type="ColorRect" parent="Start"]
+custom_minimum_size = Vector2(100, 40)
+layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -137,25 +144,25 @@ anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -20.0
 offset_top = -20.0
-offset_right = 33.0
-offset_bottom = 12.0
+offset_right = 20.0
+offset_bottom = 20.0
 grow_horizontal = 2
 grow_vertical = 2
+color = Color(0, 0.713726, 0.0941176, 1)
 
-[node name="Button" type="Button" parent="StartGame"]
+[node name="Button" type="Button" parent="Start"]
+custom_minimum_size = Vector2(100, 40)
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -26.5
+offset_left = -23.0
 offset_top = -15.5
-offset_right = 26.5
+offset_right = 23.0
 offset_bottom = 15.5
 grow_horizontal = 2
 grow_vertical = 2
-tooltip_text = "Start Game?"
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
 text = "Start"
+flat = true
