@@ -1,6 +1,7 @@
 extends Node
 class_name WaveManager
 @export var current_game_mode:GameMode
+@export var wave_delay:float = 5
 @export var basic:PackedScene
 @export var speedy:PackedScene
 @export var zickey: PackedScene
@@ -34,6 +35,7 @@ func start_wave(idx):
 func check_wave_over():
 	if enemies_left <= 0:
 		current_wave += 1
+		await(timeout(wave_delay))
 		start_wave(current_wave)
 func enemy_die():
 	enemies_left -= 1

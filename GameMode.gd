@@ -1,18 +1,18 @@
 extends Node
 class_name GameMode
+@export var waves:Array[Wave]
 func unpack_waves():
 	var waves_array = []
-	var children = get_children()
-	for x in len(children):
-		var wave = []
-		var child = children[x]
-		var enemies = child.enemies
-		wave.resize(enemies.size())
-		var times = child.times
+	for x in len(waves):
+		var wave_return = []
+		var wave = waves[x]
+		var enemies = wave.enemies
+		wave_return.resize(enemies.size())
+		var times = wave.times
 		for y in len(enemies):
-			wave[y] = {
+			wave_return[y] = {
 				"type": enemies[y],
 				"delay": times[y],
 			}
-		waves_array.append(wave)
+		waves_array.append(wave_return)
 	return waves_array

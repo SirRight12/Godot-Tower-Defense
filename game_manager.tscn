@@ -35,7 +35,7 @@ script = ExtResource("2_r60f2")
 
 [node name="WaveManager" type="Node" parent="." node_paths=PackedStringArray("current_game_mode")]
 script = ExtResource("3_sjgfr")
-current_game_mode = NodePath("../Easy")
+current_game_mode = NodePath("../DEBUG")
 basic = ExtResource("4_qnt7u")
 speedy = ExtResource("5_hsbw5")
 zickey = ExtResource("7_ufg46")
@@ -50,6 +50,7 @@ towers = Array[PackedScene]([ExtResource("11_pbg38"), ExtResource("11_pbg38"), E
 
 [node name="MoneyManager" type="Node" parent="." node_paths=PackedStringArray("money_display")]
 script = ExtResource("12_jkxa6")
+starting_amount = 300
 money_display = NodePath("../Control/Label")
 
 [node name="Control" type="Control" parent="."]
@@ -126,3 +127,35 @@ grow_vertical = 2
 text = "$100
 "
 label_settings = SubResource("LabelSettings_vosub")
+
+[node name="StartGame" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 33.0
+offset_bottom = 12.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Button" type="Button" parent="StartGame"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -26.5
+offset_top = -15.5
+offset_right = 26.5
+offset_bottom = 15.5
+grow_horizontal = 2
+grow_vertical = 2
+tooltip_text = "Start Game?"
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+text = "Start"

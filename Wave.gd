@@ -1,4 +1,4 @@
-extends Node
+extends Resource
 class_name Wave
 enum ENEMY_TYPES{BASIC,SPEEDY,ZICKEY}
 @export var enemies:Array[ENEMY_TYPES]

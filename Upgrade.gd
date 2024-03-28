@@ -1,4 +1,4 @@
-extends Node
+extends Resource
 class_name Upgrade
 @export_category("Common Upgrades")
 @export var cost:int = 100
