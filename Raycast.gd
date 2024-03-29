@@ -6,9 +6,10 @@ extends Camera3D
 @onready var starting_size = follow_percent.size.x
 @onready var follow_text = follow_mouse.find_child("Label")
 @onready var filter:ColorRect = filter_root.find_child("Filter")
-@onready var game:GameManager = get_parent().find_child("GameManager")
+@onready var game:GameManager = get_parent().get_parent().find_child("GameManager")
 @onready var registry:TowerRegistry = game.request_manager(game.MANAGERS.REGISTRY)
 @onready var money:MoneyManager = game.request_manager(game.MANAGERS.MONEY)
+@onready var root = get_parent_node_3d().get_parent_node_3d()
 var can_place_color = Color(1.0,1.0,1.0,0.16)
 var can_not_place_color = Color(1.0,0.0,0.08,0.16)
 var place_holder_tower
@@ -33,7 +34,7 @@ func get_placeholder(idx):
 	place_holder_tower = tower_selected.instantiate()
 	place_holder_tower.is_placeholder = true
 	current_selected = idx
-	get_parent_node_3d().add_child(place_holder_tower)
+	root.add_child(place_holder_tower)
 	place_holder_tower.show_range()
 	move_tower_to_mouse()
 func revoke_placeholder():
@@ -49,6 +50,7 @@ func _unhandled_input(event):
 	handle_tower_select(event)
 	handle_cancel(event)
 	handle_tower_pick(event)
+	handle_rotate(event)
 func cast(mask:int = 1) -> Dictionary:
 	var world = get_world_3d().direct_space_state
 	var mouse = get_viewport().get_mouse_position()
@@ -142,5 +144,11 @@ func enemy_pick():
 	var percent:float = float(entity.hp) / float(entity.max_hp)
 	var new_size = starting_size * percent
 	follow_percent.size.x = new_size
+@onready var center_parent = get_parent_node_3d()
+@export var SENSITIVITY = 0.001
+func handle_rotate(event):
+	if !event is InputEventMouseMotion: return
+	if !Input.is_action_pressed("rotate"): return
+	center_parent.rotate_y(event.relative.x * -SENSITIVITY)
 func _process(_delta):
 	enemy_pick()

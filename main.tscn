@@ -37,13 +37,6 @@ progress = 15.4142
 loop = false
 tilt_enabled = false
 
-[node name="Camera3D" type="Camera3D" parent="." node_paths=PackedStringArray("filter_root", "follow_mouse", "console")]
-transform = Transform3D(1, 0, 0, 0, 0.884581, 0.466387, 0, -0.466387, 0.884581, 2.71098, 2.49812, 7.85196)
-script = ExtResource("1_rp8mg")
-filter_root = NodePath("../Control")
-follow_mouse = NodePath("../FollowMouse")
-console = NodePath("../Console")
-
 [node name="Grass" type="GridMap" parent="."]
 mesh_library = ExtResource("2_rd5dc")
 cell_size = Vector3(1, 0.15, 1)
@@ -82,3 +75,14 @@ grow_vertical = 1
 offset_right = 40.0
 offset_bottom = 23.0
 script = ExtResource("7_sgvp1")
+
+[node name="Center" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 0, 3)
+
+[node name="Camera3D" type="Camera3D" parent="Center" node_paths=PackedStringArray("filter_root", "follow_mouse", "console")]
+transform = Transform3D(1, 0, 0, 0, 0.884581, 0.466387, 0, -0.466387, 0.884581, -0.28902, 2.49812, 4.85196)
+script = ExtResource("1_rp8mg")
+filter_root = NodePath("../../Control")
+follow_mouse = NodePath("../../FollowMouse")
+console = NodePath("../../Console")
+SENSITIVITY = 0.02

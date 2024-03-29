@@ -3,7 +3,7 @@ extends Resource
 class_name GameMode
 @export var test:bool:
 	set = set_test
-func set_test(val):
+func set_test(_val):
 	test = false
 	#print(unpack_waves())
 @export var waves:Array[Wave]

@@ -12,6 +12,7 @@ class_name WaveManager
 @onready var start_button = $"../Start/Button"
 var time_scale_manager:TimeScale
 var current_wave = 0
+signal wave_end()
 var waves:Array
 var enemies_left
 func _ready():
@@ -29,6 +30,7 @@ func start_wave(idx):
 	var wave_data = waves[idx]
 	var wave = wave_data['wave']
 	money.add(wave_data['bonus'])
+	wave_end.emit()
 	await timeout(wave_data['delay'])
 	enemies_left = wave.size()
 	for x in len(wave):

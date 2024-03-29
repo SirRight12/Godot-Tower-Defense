@@ -10,6 +10,7 @@ class_name Tower
 @onready var range_util:TowerRange = get_tower_util("Range")
 @onready var deny_place_util:Area3D = get_tower_util("DenyPlace")
 @onready var game:GameManager = get_parent_node_3d().find_child("GameManager")
+@onready var wave:WaveManager = game.request_manager(game.MANAGERS.WAVE)
 @onready var scaler:TimeScale = game.request_manager(game.MANAGERS.TIMESCALE)
 @onready var money:MoneyManager = game.request_manager(game.MANAGERS.MONEY)
 var is_placeholder = false
