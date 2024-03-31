@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://cck2ooufwgycu"]
+[gd_scene load_steps=11 format=3 uid="uid://cck2ooufwgycu"]
 
 [ext_resource type="PackedScene" uid="uid://c5u3spswx8lr1" path="res://enemy_hp.tscn" id="1_e6g8s"]
 [ext_resource type="PackedScene" uid="uid://dasfnmxwnwa7d" path="res://standard_path_follow.tscn" id="2_aso2y"]
@@ -6,7 +6,6 @@
 [ext_resource type="PackedScene" uid="uid://13owcifnhg10" path="res://camera_filter.tscn" id="3_awrul"]
 [ext_resource type="Curve3D" uid="uid://bftd7dwhnyxdn" path="res://World2.tres" id="3_edj1f"]
 [ext_resource type="MeshLibrary" uid="uid://bgy1gpdaaiwnd" path="res://tileset.tres" id="4_b146v"]
-[ext_resource type="PackedScene" uid="uid://dvbmgppw84ix5" path="res://Scout.tscn" id="4_u7k71"]
 [ext_resource type="PackedScene" uid="uid://6i6yh1tiycmt" path="res://game_manager.tscn" id="6_qkjuo"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_66ioh"]
@@ -49,17 +48,15 @@ data = {
 "cells": PackedInt32Array(65534, 65535, 1, 65534, 0, 1, 65534, 1, 1, 65534, 2, 1, 65534, 3, 1, 65535, 3, 1, 65535, 4, 1, 65535, 5, 1, 0, 5, 1, 1, 5, 1, 2, 5, 1, 3, 5, 1, 3, 4, 1, 3, 3, 1, 4, 3, 1, 5, 3, 1, 5, 2, 1, 5, 1, 1, 5, 0, 1, 5, 65535, 1)
 }
 
-[node name="Camera3D" type="Camera3D" parent="." node_paths=PackedStringArray("filter_root", "follow_mouse")]
-transform = Transform3D(1, 0, 0, 0, 0.688355, 0.725374, 0, -0.725374, 0.688355, 2, 3, 7.175)
-script = ExtResource("2_imgtk")
-filter_root = NodePath("../FilterRoot")
-follow_mouse = NodePath("../FollowMouse")
-tower_1 = ExtResource("4_u7k71")
-tower_2 = ExtResource("4_u7k71")
-tower_3 = ExtResource("4_u7k71")
-tower_4 = ExtResource("4_u7k71")
-tower_5 = ExtResource("4_u7k71")
-
 [node name="FilterRoot" parent="." instance=ExtResource("3_awrul")]
 
 [node name="GameManager" parent="." instance=ExtResource("6_qkjuo")]
+
+[node name="Center" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 0, 2)
+
+[node name="Camera3D" type="Camera3D" parent="Center" node_paths=PackedStringArray("filter_root", "follow_mouse")]
+transform = Transform3D(1, 0, 0, 0, 0.688355, 0.725374, 0, -0.725374, 0.688355, 0, 3, 5.175)
+script = ExtResource("2_imgtk")
+filter_root = NodePath("../../FilterRoot")
+follow_mouse = NodePath("../../FollowMouse")

@@ -9,4 +9,4 @@ func shoot():
 	await player.animation_finished
 	idle()
 func dance():
-	player.play("Dance",.1)
+	player.play("Dance",1)

@@ -1,8 +1,9 @@
-[gd_scene load_steps=20 format=3 uid="uid://6i6yh1tiycmt"]
+[gd_scene load_steps=21 format=3 uid="uid://6i6yh1tiycmt"]
 
 [ext_resource type="Script" path="res://Base.gd" id="1_asqr1"]
 [ext_resource type="Script" path="res://GameManager.gd" id="1_er8mo"]
 [ext_resource type="Script" path="res://TimeScale.gd" id="2_r60f2"]
+[ext_resource type="Script" path="res://DataManager.gd" id="2_uny71"]
 [ext_resource type="Script" path="res://WaveManager.gd" id="3_sjgfr"]
 [ext_resource type="PackedScene" uid="uid://db1xxjnsoxss6" path="res://basic.tscn" id="4_qnt7u"]
 [ext_resource type="Resource" uid="uid://b66jgycrpdtux" path="res://Debug.tres" id="5_8wvx5"]
@@ -34,6 +35,9 @@ shadow_offset = Vector2(1.31, 1)
 
 [node name="GameManager" type="Node"]
 script = ExtResource("1_er8mo")
+
+[node name="DataManager" type="Node" parent="."]
+script = ExtResource("2_uny71")
 
 [node name="Base" type="Node" parent="."]
 script = ExtResource("1_asqr1")
