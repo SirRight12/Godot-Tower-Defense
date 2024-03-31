@@ -8,3 +8,5 @@ func shoot():
 	player.play("Shoot",.1)
 	await player.animation_finished
 	idle()
+func dance():
+	player.play("Dance",.1)

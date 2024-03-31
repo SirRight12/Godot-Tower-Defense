@@ -1,7 +1,8 @@
-[gd_scene load_steps=25 format=3 uid="uid://c8re26m6egyhe"]
+[gd_scene load_steps=26 format=3 uid="uid://c8re26m6egyhe"]
 
 [ext_resource type="Material" uid="uid://1dcue1hvh6l7" path="res://gun_metal.tres" id="1_d5k1f"]
 [ext_resource type="Script" path="res://TowerAnimations.gd" id="1_tyhf2"]
+[ext_resource type="Animation" uid="uid://qrrx3ll4agva" path="res://generic_dance.res" id="3_rxqk2"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nsop7"]
 resource_name = "material_0"
@@ -428,6 +429,18 @@ tracks/12/keys = {
 "update": 0,
 "values": [Vector3(0, 0, 0), Vector3(0, 0, 0.0698132), Vector3(0, 0, 0)]
 }
+tracks/13/type = "value"
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/path = NodePath("UpperBody/RightArm/Gun2:rotation")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, -1.5708)]
+}
 
 [sub_resource type="Animation" id="Animation_ahyd6"]
 resource_name = "RESET"
@@ -611,6 +624,18 @@ tracks/14/keys = {
 "update": 0,
 "values": [Vector3(0, 0, 0)]
 }
+tracks/15/type = "value"
+tracks/15/imported = false
+tracks/15/enabled = true
+tracks/15/path = NodePath("UpperBody/RightArm/Gun2:rotation")
+tracks/15/interp = 1
+tracks/15/loop_wrap = true
+tracks/15/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, -1.5708)]
+}
 
 [sub_resource type="Animation" id="Animation_q5xqo"]
 resource_name = "Shoot"
@@ -748,9 +773,22 @@ tracks/10/keys = {
 "update": 0,
 "values": [Vector3(0, 0.20656, 0)]
 }
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("UpperBody/RightArm/Gun2:rotation")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, -1.5708)]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_frvgp"]
 _data = {
+"Dance": ExtResource("3_rxqk2"),
 "Idle": SubResource("Animation_8gyyk"),
 "RESET": SubResource("Animation_ahyd6"),
 "Shoot": SubResource("Animation_q5xqo")
@@ -798,7 +836,7 @@ mesh = SubResource("ArrayMesh_5dqfk")
 skeleton = NodePath("")
 
 [node name="Gun2" type="Node3D" parent="RootBone/UpperBody/RightArm"]
-transform = Transform3D(0, 1, 0, -1, 0, 0, 0, 0, 1, 0, -0.0625, 0.015625)
+transform = Transform3D(-3.61999e-06, 1, 0, -1, -3.61999e-06, 0, 0, 0, 1, 0, -0.0625, 0.015625)
 
 [node name="cube5" type="MeshInstance3D" parent="RootBone/UpperBody/RightArm/Gun2"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.140625, 0, 0.046875)

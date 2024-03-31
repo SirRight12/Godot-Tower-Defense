@@ -5,7 +5,6 @@ class_name GameMode
 	set = set_test
 func set_test(_val):
 	test = false
-	#print(unpack_waves())
 @export var waves:Array[Wave]
 func unpack_waves():
 	var waves_array = []
@@ -13,9 +12,7 @@ func unpack_waves():
 	for x in len(children):
 		var wave_return = []
 		var child = waves[x]
-		print(child.enemies)
 		var enemies = child.enemies
-		print(enemies.size())
 		wave_return.resize(enemies.size())
 		var times = child.times
 		var wave_delay = child.delay

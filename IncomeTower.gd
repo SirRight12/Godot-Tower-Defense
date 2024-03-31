@@ -9,7 +9,9 @@ func apply_income_buffs():
 func _ready():
 	entity.idle()
 	wave.wave_end.connect(generate_income)
+	wave.beat_game.connect(dance)
 func generate_income():
 	money.add(income)
+	$IncomeText.recieved_money(income,scaler)
 func _init():
 	pass

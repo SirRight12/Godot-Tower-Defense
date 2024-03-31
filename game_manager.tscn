@@ -1,11 +1,11 @@
-[gd_scene load_steps=18 format=3 uid="uid://6i6yh1tiycmt"]
+[gd_scene load_steps=20 format=3 uid="uid://6i6yh1tiycmt"]
 
 [ext_resource type="Script" path="res://Base.gd" id="1_asqr1"]
 [ext_resource type="Script" path="res://GameManager.gd" id="1_er8mo"]
 [ext_resource type="Script" path="res://TimeScale.gd" id="2_r60f2"]
 [ext_resource type="Script" path="res://WaveManager.gd" id="3_sjgfr"]
 [ext_resource type="PackedScene" uid="uid://db1xxjnsoxss6" path="res://basic.tscn" id="4_qnt7u"]
-[ext_resource type="Resource" uid="uid://di56oywi876w2" path="res://Easy.tres" id="5_38d6w"]
+[ext_resource type="Resource" uid="uid://b66jgycrpdtux" path="res://Debug.tres" id="5_8wvx5"]
 [ext_resource type="PackedScene" uid="uid://bwc1i6myddq0d" path="res://speedy.tscn" id="5_hsbw5"]
 [ext_resource type="PackedScene" uid="uid://cty70vo8qkw5f" path="res://zickey.tscn" id="7_ufg46"]
 [ext_resource type="Script" path="res://TowerRegistry.gd" id="10_erg5a"]
@@ -14,6 +14,7 @@
 [ext_resource type="Script" path="res://MoneyManager.gd" id="12_jkxa6"]
 [ext_resource type="PackedScene" uid="uid://c8mpj1ian0gp1" path="res://scout_viewport.tscn" id="13_2i8tw"]
 [ext_resource type="PackedScene" uid="uid://b1888copewp14" path="res://farm_viewport.tscn" id="14_w05eu"]
+[ext_resource type="Script" path="res://UpdateText.gd" id="15_eify3"]
 
 [sub_resource type="Environment" id="Environment_v7e1u"]
 
@@ -22,6 +23,14 @@ environment = SubResource("Environment_v7e1u")
 
 [sub_resource type="LabelSettings" id="LabelSettings_vosub"]
 font_color = Color(0.223529, 0.713726, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_5g5cw"]
+font_size = 13
+outline_size = 4
+outline_color = Color(0, 0, 0, 1)
+shadow_size = 2
+shadow_color = Color(1, 1, 1, 1)
+shadow_offset = Vector2(1.31, 1)
 
 [node name="GameManager" type="Node"]
 script = ExtResource("1_er8mo")
@@ -36,7 +45,7 @@ script = ExtResource("2_r60f2")
 
 [node name="WaveManager" type="Node" parent="."]
 script = ExtResource("3_sjgfr")
-current_game_mode = ExtResource("5_38d6w")
+current_game_mode = ExtResource("5_8wvx5")
 basic = ExtResource("4_qnt7u")
 speedy = ExtResource("5_hsbw5")
 zickey = ExtResource("7_ufg46")
@@ -194,3 +203,49 @@ grow_horizontal = 2
 grow_vertical = 2
 text = "Start"
 flat = true
+
+[node name="TimeScale" type="Control" parent="."]
+layout_mode = 3
+anchor_left = 0.16
+anchor_top = 0.033
+anchor_right = 0.16
+anchor_bottom = 0.033
+offset_right = 150.0
+offset_bottom = 16.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HSlider" type="HSlider" parent="TimeScale"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -8.0
+offset_right = 120.0
+offset_bottom = 8.0
+grow_vertical = 2
+min_value = 1.0
+max_value = 4.0
+step = 0.1
+value = 1.0
+allow_greater = true
+
+[node name="Label" type="Label" parent="TimeScale"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -25.0
+offset_top = -11.0
+offset_right = -1.52588e-05
+offset_bottom = 12.0
+grow_horizontal = 0
+grow_vertical = 2
+text = "1x"
+label_settings = SubResource("LabelSettings_5g5cw")
+script = ExtResource("15_eify3")
+
+[connection signal="value_changed" from="TimeScale/HSlider" to="TimeScaleManager" method="_on_h_slider_value_changed"]
+[connection signal="value_changed" from="TimeScale/HSlider" to="TimeScale/Label" method="_on_h_slider_value_changed"]

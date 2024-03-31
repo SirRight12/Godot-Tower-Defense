@@ -7,12 +7,14 @@ class_name WaveManager
 @onready var enemy_types:Array[PackedScene] = [basic,speedy,zickey]
 @onready var parent:Node3D = get_parent().get_parent()
 @onready var game:GameManager = get_parent()
+@onready var base:Base = game.request_manager(game.MANAGERS.BASE)
 @onready var money:MoneyManager = game.request_manager(game.MANAGERS.MONEY)
 @onready var start_node = $"../Start"
 @onready var start_button = $"../Start/Button"
 var time_scale_manager:TimeScale
 var current_wave = 0
 signal wave_end()
+signal beat_game()
 var waves:Array
 var enemies_left
 func _ready():
@@ -25,13 +27,13 @@ func start_waves():
 	start_wave(current_wave)
 func start_wave(idx):
 	if waves.size() == idx: 
-		print("beat game")
+		beat_game.emit()
 		return
 	var wave_data = waves[idx]
 	var wave = wave_data['wave']
 	money.add(wave_data['bonus'])
 	wave_end.emit()
-	await timeout(wave_data['delay'])
+	await timeout(time_scale_manager.div(wave_data['delay']))
 	enemies_left = wave.size()
 	for x in len(wave):
 		var enemy_data = wave[x]

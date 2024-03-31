@@ -20,17 +20,16 @@ func range_changed(val):
 		await ready
 	update_range()
 func update_range():
-	print(range_util)
 	range_util.size = tower_range
 func _init():
 	assert(false,"Tower is an abstract class")
 func _ready():
 	entity.idle()
-	print("hello?")
-	add_to_group("tower")
 	update_range()
+	wave.beat_game.connect(dance)
+func dance():
+	entity.dance()
 func get_tower_util(util_name:String) -> Node3D:
-	print(utils)
 	return utils.find_child(util_name)
 func show_range():
 	range_util.visible = true
@@ -48,6 +47,5 @@ func hide_all():
 	hide_deny_place()
 func check_deny():
 	var areas = deny_place_util.get_overlapping_areas()
-	print(areas)
 	if areas.size() >= 1: return true
 	return false

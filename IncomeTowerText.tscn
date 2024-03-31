@@ -1,0 +1,32 @@
+[gd_scene load_steps=5 format=3 uid="uid://ck33nyvuuwa6r"]
+
+[ext_resource type="Script" path="res://ResizeToText.gd" id="1_8hqsp"]
+[ext_resource type="Script" path="res://IncomeTowerText.gd" id="1_qmdnt"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_h7qsa"]
+viewport_path = NodePath("SubViewport")
+
+[sub_resource type="LabelSettings" id="LabelSettings_2ne6m"]
+font_size = 100
+font_color = Color(0, 1, 0, 1)
+outline_size = 13
+outline_color = Color(0, 0, 0, 1)
+
+[node name="Text" type="Sprite3D"]
+transform = Transform3D(0.205, 0, 0, 0, 0.205, 0, 0, 0, 0.205, 0, 0, 0)
+visible = false
+cast_shadow = 0
+billboard = 2
+texture = SubResource("ViewportTexture_h7qsa")
+script = ExtResource("1_qmdnt")
+
+[node name="SubViewport" type="SubViewport" parent="."]
+transparent_bg = true
+size = Vector2i(285, 137)
+script = ExtResource("1_8hqsp")
+
+[node name="Label" type="Label" parent="SubViewport"]
+offset_right = 40.0
+offset_bottom = 23.0
+text = "+$100"
+label_settings = SubResource("LabelSettings_2ne6m")

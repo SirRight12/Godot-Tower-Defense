@@ -11,3 +11,7 @@ func mult(val):
 func div(val):
 	var new_val = val/time_scale
 	return new_val
+
+
+func _on_h_slider_value_changed(value):
+	time_scale = value
