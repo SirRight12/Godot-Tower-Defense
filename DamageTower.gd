@@ -28,12 +28,29 @@ func timeout(time):
 	return true
 func _shoot(_enemy):
 	pass
+func get_faction():
+	var faction_data = data.json_data['faction']
+	var faction = factions.get_faction(faction_data)
+	return faction
 func get_damage():
 # for messing around with buffs
 	var damage_changed = damage
+	var faction = get_faction()
+	print(damage_changed)
+	if faction["DN"]:
+		damage_changed = damage_changed - (damage_changed * faction['DB'])
+	else:
+		damage_changed = damage_changed * (1 + faction['DB'])
+	print(damage_changed)
 	return damage_changed
 func get_reload_time():
 # for messing around with buffs
 	var time_changed = reload_time
+	var faction = get_faction()
+	if faction['ASN']:
+		time_changed = time_changed * (1 + faction['ASB'])
+	else:
+		time_changed = time_changed - (time_changed * faction['ASB'])
+	#Should be final change to the variable
 	time_changed = scaler.div(time_changed)
 	return time_changed

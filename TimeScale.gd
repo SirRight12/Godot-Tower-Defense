@@ -1,8 +1,11 @@
 extends Node
 class_name TimeScale
-@export var time_scale:float = 1
+@export var time_scale:float = 1:
+	set = set_time_scale
+signal scale_changed()
 func set_time_scale(val):
 	time_scale = val
+	scale_changed.emit()
 func get_time_scale():
 	return time_scale
 func mult(val):

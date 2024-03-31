@@ -13,6 +13,8 @@ class_name Tower
 @onready var wave:WaveManager = game.request_manager(game.MANAGERS.WAVE)
 @onready var scaler:TimeScale = game.request_manager(game.MANAGERS.TIMESCALE)
 @onready var money:MoneyManager = game.request_manager(game.MANAGERS.MONEY)
+@onready var data:GameDataManager = game.request_manager(game.MANAGERS.DATA)
+@onready var factions:FactionManager = game.request_manager(game.MANAGERS.FACTIONS)
 var is_placeholder = false
 func range_changed(val):
 	tower_range = val
@@ -23,9 +25,13 @@ func update_range():
 	range_util.size = tower_range
 func _init():
 	assert(false,"Tower is an abstract class")
+func time_scale_change():
+	print("hello?")
+	entity.set_anim_speed(scaler.get_time_scale())
 func _ready():
 	entity.idle()
 	update_range()
+	scaler.scale_changed.connect(time_scale_change)
 	wave.beat_game.connect(dance)
 func dance():
 	entity.dance()

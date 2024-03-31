@@ -1,0 +1,9 @@
+[gd_scene load_steps=4 format=3 uid="uid://bi5lbi7rd0omj"]
+
+[ext_resource type="Script" path="res://FactionManager.gd" id="1_67g20"]
+[ext_resource type="Resource" uid="uid://cnmtyau1ef1a2" path="res://mercenaries.tres" id="2_gmkxx"]
+[ext_resource type="Resource" uid="uid://dk3a0p0kmdquj" path="res://none.tres" id="3_0wo48"]
+
+[node name="FactionManager" type="Node"]
+script = ExtResource("1_67g20")
+factions = Array[Resource("res://FactionStats.gd")]([ExtResource("2_gmkxx"), ExtResource("3_0wo48")])

@@ -10,3 +10,5 @@
 10. Add upgrades (10%)
 11. Add ui (30% NOT FINAL)
 12. Put in some actual enemy models (0%)
+13. Add factions (20%) (need to add more, currently mercenaries and none)
+14. 

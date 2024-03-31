@@ -10,3 +10,6 @@ func shoot():
 	idle()
 func dance():
 	player.play("Dance",1)
+func set_anim_speed(val):
+	print("new speed!")
+	player.speed_scale = val

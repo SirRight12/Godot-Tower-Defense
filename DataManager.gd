@@ -1,11 +1,6 @@
 extends Node
 class_name GameDataManager
-var json_data:Dictionary = JSON.parse_string(FileAccess.open("res://test.json",FileAccess.READ).get_as_text()):
-	set = write
-func set_read(_val):
-	var file = FileAccess.open("res://test.json",FileAccess.READ)
-	var data = file.get_as_text()
-	print(data)
+var json_data:Dictionary = JSON.parse_string(FileAccess.open("res://test.json",FileAccess.READ).get_as_text())
 func write(val):
 	json_data = val
 	print(val)
@@ -18,5 +13,4 @@ func _ready():
 	if !json_data['faction']:
 		json_data['faction'] = 'none'
 	#test (comment later)
-	json_data['faction'] = "mercenaries"
-	write(json_data)
+	#json_data['faction'] = "mercenaries"

@@ -1,10 +1,11 @@
-[gd_scene load_steps=21 format=3 uid="uid://6i6yh1tiycmt"]
+[gd_scene load_steps=22 format=3 uid="uid://6i6yh1tiycmt"]
 
 [ext_resource type="Script" path="res://Base.gd" id="1_asqr1"]
 [ext_resource type="Script" path="res://GameManager.gd" id="1_er8mo"]
 [ext_resource type="Script" path="res://TimeScale.gd" id="2_r60f2"]
 [ext_resource type="Script" path="res://DataManager.gd" id="2_uny71"]
 [ext_resource type="Script" path="res://WaveManager.gd" id="3_sjgfr"]
+[ext_resource type="PackedScene" uid="uid://bi5lbi7rd0omj" path="res://Factions.tscn" id="4_cjto6"]
 [ext_resource type="PackedScene" uid="uid://db1xxjnsoxss6" path="res://basic.tscn" id="4_qnt7u"]
 [ext_resource type="Resource" uid="uid://b66jgycrpdtux" path="res://Debug.tres" id="5_8wvx5"]
 [ext_resource type="PackedScene" uid="uid://bwc1i6myddq0d" path="res://speedy.tscn" id="5_hsbw5"]
@@ -43,6 +44,8 @@ script = ExtResource("2_uny71")
 script = ExtResource("1_asqr1")
 max_hp = 100
 temp_shield = 5
+
+[node name="FactionManager" parent="." instance=ExtResource("4_cjto6")]
 
 [node name="TimeScaleManager" type="Node" parent="."]
 script = ExtResource("2_r60f2")
@@ -228,7 +231,6 @@ offset_top = -8.0
 offset_right = 120.0
 offset_bottom = 8.0
 grow_vertical = 2
-min_value = 1.0
 max_value = 4.0
 step = 0.1
 value = 1.0

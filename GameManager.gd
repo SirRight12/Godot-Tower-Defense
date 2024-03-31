@@ -1,25 +1,28 @@
 extends Node
 class_name GameManager
-enum MANAGERS{WAVE,BASE,TIMESCALE,EASY,REGISTRY,MONEY}
+enum MANAGERS{WAVE,BASE,TIMESCALE,REGISTRY,MONEY,DATA,FACTIONS}
 func request_manager(type:MANAGERS) -> Node:
 	match (type):
 		0:
 			#wave
-			return find_child("WaveManager")
+			return $WaveManager
 		1:
 			#base
-			return find_child("Base")
+			return $Base
 		2:
 			#timescale
-			return find_child("TimeScaleManager")
+			return $TimeScaleManager
 		3:
-			#easy mode
-			return find_child("Easy")
-		4:
 			#Registry
-			return find_child("TowerRegistry")
-		5:
+			return $TowerRegistry
+		4:
 			#Money
-			return find_child("MoneyManager")
+			return $MoneyManager
+		5:
+			#Data
+			return $DataManager
+		6:
+			#Factions
+			return $FactionManager
 	# Default
 	return Node.new()

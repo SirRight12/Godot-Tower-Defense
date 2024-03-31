@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="FactionStats" load_steps=2 format=3 uid="uid://dk3a0p0kmdquj"]
+
+[ext_resource type="Script" path="res://FactionStats.gd" id="1_3bycx"]
+
+[resource]
+script = ExtResource("1_3bycx")
+name = "none"
+attack_speed_boost = 0.0
+AS_negative = false
+damage_boost = 0.0
+D_negative = false
+income_boost = 0.0
+I_negative = false
