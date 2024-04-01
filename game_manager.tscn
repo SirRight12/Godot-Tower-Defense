@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://6i6yh1tiycmt"]
+[gd_scene load_steps=18 format=3 uid="uid://6i6yh1tiycmt"]
 
 [ext_resource type="Script" path="res://Base.gd" id="1_asqr1"]
 [ext_resource type="Script" path="res://GameManager.gd" id="1_er8mo"]
@@ -14,17 +14,8 @@
 [ext_resource type="PackedScene" uid="uid://6erd1cmarykt" path="res://Farm.tscn" id="11_4y2gl"]
 [ext_resource type="PackedScene" uid="uid://dvbmgppw84ix5" path="res://Scout.tscn" id="11_pbg38"]
 [ext_resource type="Script" path="res://MoneyManager.gd" id="12_jkxa6"]
-[ext_resource type="PackedScene" uid="uid://c8mpj1ian0gp1" path="res://scout_viewport.tscn" id="13_2i8tw"]
-[ext_resource type="PackedScene" uid="uid://b1888copewp14" path="res://farm_viewport.tscn" id="14_w05eu"]
+[ext_resource type="PackedScene" uid="uid://dcx6dfcp4u066" path="res://tower_bar.tscn" id="15_8ruae"]
 [ext_resource type="Script" path="res://UpdateText.gd" id="15_eify3"]
-
-[sub_resource type="Environment" id="Environment_v7e1u"]
-
-[sub_resource type="World3D" id="World3D_ajp6u"]
-environment = SubResource("Environment_v7e1u")
-
-[sub_resource type="LabelSettings" id="LabelSettings_vosub"]
-font_color = Color(0.223529, 0.713726, 0, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_5g5cw"]
 font_size = 13
@@ -63,108 +54,9 @@ towers = Array[PackedScene]([ExtResource("11_pbg38"), ExtResource("11_4y2gl"), E
 
 [node name="MoneyManager" type="Node" parent="." node_paths=PackedStringArray("money_display")]
 script = ExtResource("12_jkxa6")
-money_display = NodePath("../Control/Label")
+money_display = NodePath("../TowerBar/Label")
 
-[node name="Control" type="Control" parent="."]
-layout_mode = 3
-anchors_preset = 0
-offset_right = 1152.0
-offset_bottom = 648.0
-mouse_filter = 2
-
-[node name="Control" type="Control" parent="Control"]
-layout_mode = 1
-anchor_left = 0.5
-anchor_top = 0.898
-anchor_right = 0.5
-anchor_bottom = 0.898
-offset_left = -250.0
-offset_top = -50.0
-offset_right = 250.0
-offset_bottom = 50.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="ColorRect" type="ColorRect" parent="Control/Control"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -250.0
-offset_top = -50.0
-offset_right = 250.0
-offset_bottom = 50.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(0.137255, 0.309804, 0.258824, 1)
-
-[node name="Control" type="Control" parent="Control/Control"]
-layout_mode = 1
-anchor_left = 0.1
-anchor_top = 0.5
-anchor_right = 0.1
-anchor_bottom = 0.5
-
-[node name="SubViewportContainer" type="SubViewportContainer" parent="Control/Control/Control"]
-layout_mode = 1
-anchors_preset = -1
-offset_left = -50.0
-offset_top = -50.0
-offset_right = 50.0
-offset_bottom = 50.0
-stretch = true
-
-[node name="SubViewport" type="SubViewport" parent="Control/Control/Control/SubViewportContainer"]
-own_world_3d = true
-world_3d = SubResource("World3D_ajp6u")
-transparent_bg = true
-handle_input_locally = false
-size = Vector2i(100, 100)
-render_target_update_mode = 4
-
-[node name="Node3D" parent="Control/Control/Control/SubViewportContainer/SubViewport" instance=ExtResource("13_2i8tw")]
-
-[node name="Control2" type="Control" parent="Control/Control"]
-layout_mode = 1
-anchor_left = 0.3
-anchor_top = 0.5
-anchor_right = 0.3
-anchor_bottom = 0.5
-
-[node name="SubViewportContainer" type="SubViewportContainer" parent="Control/Control/Control2"]
-layout_mode = 1
-anchors_preset = -1
-offset_left = -50.0
-offset_top = -50.0
-offset_right = 50.0
-offset_bottom = 50.0
-stretch = true
-
-[node name="SubViewport" type="SubViewport" parent="Control/Control/Control2/SubViewportContainer"]
-own_world_3d = true
-world_3d = SubResource("World3D_ajp6u")
-transparent_bg = true
-handle_input_locally = false
-size = Vector2i(100, 100)
-render_target_update_mode = 4
-
-[node name="Node3D" parent="Control/Control/Control2/SubViewportContainer/SubViewport" instance=ExtResource("14_w05eu")]
-
-[node name="Label" type="Label" parent="Control"]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.283
-anchor_top = 0.838
-anchor_right = 0.283
-anchor_bottom = 0.838
-offset_right = 37.0
-grow_horizontal = 0
-grow_vertical = 2
-text = "$100
-"
-label_settings = SubResource("LabelSettings_vosub")
+[node name="TowerBar" parent="." instance=ExtResource("15_8ruae")]
 
 [node name="Start" type="Control" parent="."]
 custom_minimum_size = Vector2(100, 40)
@@ -255,3 +147,5 @@ script = ExtResource("15_eify3")
 
 [connection signal="value_changed" from="TimeScale/HSlider" to="TimeScaleManager" method="_on_h_slider_value_changed"]
 [connection signal="value_changed" from="TimeScale/HSlider" to="TimeScale/Label" method="_on_h_slider_value_changed"]
+
+[editable path="TowerBar"]

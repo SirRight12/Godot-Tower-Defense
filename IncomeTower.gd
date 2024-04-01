@@ -10,6 +10,7 @@ func _ready():
 	entity.idle()
 	wave.wave_end.connect(generate_income)
 	wave.beat_game.connect(dance)
+	scaler.scale_changed.connect(time_scale_change)
 func generate_income():
 	money.add(income)
 	$IncomeText.recieved_money(income,scaler)

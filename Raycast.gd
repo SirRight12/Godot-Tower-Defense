@@ -6,10 +6,10 @@ extends Camera3D
 @onready var starting_size = follow_percent.size.x
 @onready var follow_text = follow_mouse.find_child("Label")
 @onready var filter:ColorRect = filter_root.find_child("Filter")
-@onready var game:GameManager = get_parent().get_parent().find_child("GameManager")
+@onready var root = get_parent_node_3d().get_parent_node_3d().get_parent_node_3d()
+@onready var game:GameManager = root.find_child("GameManager")
 @onready var registry:TowerRegistry = game.request_manager(game.MANAGERS.REGISTRY)
 @onready var money:MoneyManager = game.request_manager(game.MANAGERS.MONEY)
-@onready var root = get_parent_node_3d().get_parent_node_3d()
 var can_place_color = Color(1.0,1.0,1.0,0.16)
 var can_not_place_color = Color(1.0,0.0,0.08,0.16)
 var place_holder_tower
@@ -29,6 +29,7 @@ func hide_filter():
 func get_placeholder(idx):
 	revoke_placeholder()
 	show_filter()
+	print("showing?")
 	registry.show_all_tower_deny()
 	var tower_selected = registry.get_tower(idx)
 	place_holder_tower = tower_selected.instantiate()
@@ -144,11 +145,14 @@ func enemy_pick():
 	var percent:float = float(entity.hp) / float(entity.max_hp)
 	var new_size = starting_size * percent
 	follow_percent.size.x = new_size
-@onready var center_parent = get_parent_node_3d()
+@onready var center_parent2 = get_parent_node_3d()
+@onready var center_parent = center_parent2.get_parent_node_3d()
 @export var SENSITIVITY = 0.001
 func handle_rotate(event):
 	if !event is InputEventMouseMotion: return
 	if !Input.is_action_pressed("rotate"): return
 	center_parent.rotate_y(event.relative.x * -SENSITIVITY)
+	center_parent2.rotate_x(event.relative.y * -SENSITIVITY)
+	center_parent2.rotation.x = clampf(center_parent2.rotation.x,-PI/4,17/(180/PI))
 func _process(_delta):
 	enemy_pick()
