@@ -16,6 +16,10 @@ config/features=PackedStringArray("4.2", "GL Compatibility")
 config/icon="res://icon.svg"
 config/bg_color=Color(0.14, 0.14, 0.14, 1)
 
+[dotnet]
+
+project/assembly_name="Samuel Tower Defense"
+
 [input]
 
 pick={

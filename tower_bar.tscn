@@ -9,6 +9,7 @@
 environment = SubResource("Environment_v7e1u")
 
 [sub_resource type="LabelSettings" id="LabelSettings_vosub"]
+font_size = 400
 font_color = Color(0.223529, 0.713726, 0, 1)
 
 [node name="Control2" type="Control"]
@@ -83,9 +84,10 @@ layout_mode = 1
 anchors_preset = -1
 anchor_right = 0.1
 anchor_bottom = 0.12
-offset_right = 0.224003
-offset_bottom = 12.5024
+offset_right = 865.92
+offset_bottom = 535.502
 grow_vertical = 2
+scale = Vector2(0.05, 0.05)
 text = "$100
 "
 label_settings = SubResource("LabelSettings_vosub")

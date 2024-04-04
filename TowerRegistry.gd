@@ -1,7 +1,7 @@
 @tool
 extends Node
 class_name TowerRegistry
-@onready var root:Node3D = get_parent().get_parent()
+@onready var root = get_parent().get_parent()
 @export var towers:Array[PackedScene]:
 	set = set_array
 var towers_placed: Dictionary = {}

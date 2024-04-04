@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://6i6yh1tiycmt"]
+[gd_scene load_steps=19 format=3 uid="uid://6i6yh1tiycmt"]
 
 [ext_resource type="Script" path="res://Base.gd" id="1_asqr1"]
 [ext_resource type="Script" path="res://GameManager.gd" id="1_er8mo"]
@@ -16,6 +16,9 @@
 [ext_resource type="Script" path="res://MoneyManager.gd" id="12_jkxa6"]
 [ext_resource type="PackedScene" uid="uid://dcx6dfcp4u066" path="res://tower_bar.tscn" id="15_8ruae"]
 [ext_resource type="Script" path="res://UpdateText.gd" id="15_eify3"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_g415v"]
+font_size = 27
 
 [sub_resource type="LabelSettings" id="LabelSettings_5g5cw"]
 font_size = 13
@@ -58,30 +61,27 @@ money_display = NodePath("../TowerBar/Label")
 
 [node name="TowerBar" parent="." instance=ExtResource("15_8ruae")]
 
+[node name="Label" parent="TowerBar" index="3"]
+theme_override_font_sizes/font_size = 3221
+
 [node name="Start" type="Control" parent="."]
 custom_minimum_size = Vector2(100, 40)
 layout_mode = 3
-anchor_left = 0.5
-anchor_top = 0.033
-anchor_right = 0.5
-anchor_bottom = 0.033
-offset_left = -70.0
-offset_right = 30.0
-offset_bottom = 40.0
+anchor_left = 0.445
+anchor_top = 0.03
+anchor_right = 0.531
+anchor_bottom = 0.09
+offset_left = 28.8
+offset_right = -29.9521
+offset_bottom = -40.176
 grow_horizontal = 2
 
 [node name="ColorRect" type="ColorRect" parent="Start"]
 custom_minimum_size = Vector2(100, 40)
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -20.0
-offset_right = 20.0
-offset_bottom = 20.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0.713726, 0.0941176, 1)
@@ -89,39 +89,39 @@ color = Color(0, 0.713726, 0.0941176, 1)
 [node name="Button" type="Button" parent="Start"]
 custom_minimum_size = Vector2(100, 40)
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -23.0
-offset_top = -15.5
-offset_right = 23.0
-offset_bottom = 15.5
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+flat = true
+
+[node name="Label" type="Label" parent="Start"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 text = "Start"
-flat = true
+label_settings = SubResource("LabelSettings_g415v")
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="TimeScale" type="Control" parent="."]
 layout_mode = 3
-anchor_left = 0.16
+anchor_left = 0.17
 anchor_top = 0.033
-anchor_right = 0.16
-anchor_bottom = 0.033
-offset_right = 150.0
-offset_bottom = 16.0
+anchor_right = 0.31
+anchor_bottom = 0.083
 grow_horizontal = 2
 grow_vertical = 2
 
 [node name="HSlider" type="HSlider" parent="TimeScale"]
 layout_mode = 1
-anchors_preset = 4
-anchor_top = 0.5
-anchor_bottom = 0.5
-offset_top = -8.0
-offset_right = 120.0
-offset_bottom = 8.0
+anchors_preset = -1
+anchor_right = 0.8
+anchor_bottom = 1.0
 grow_vertical = 2
 max_value = 4.0
 step = 0.1
@@ -130,19 +130,16 @@ allow_greater = true
 
 [node name="Label" type="Label" parent="TimeScale"]
 layout_mode = 1
-anchors_preset = 6
-anchor_left = 1.0
-anchor_top = 0.5
+anchors_preset = -1
+anchor_left = 0.8
 anchor_right = 1.0
-anchor_bottom = 0.5
-offset_left = -25.0
-offset_top = -11.0
-offset_right = -1.52588e-05
-offset_bottom = 12.0
+anchor_bottom = 1.0
 grow_horizontal = 0
 grow_vertical = 2
 text = "1x"
 label_settings = SubResource("LabelSettings_5g5cw")
+horizontal_alignment = 1
+vertical_alignment = 1
 script = ExtResource("15_eify3")
 
 [connection signal="value_changed" from="TimeScale/HSlider" to="TimeScaleManager" method="_on_h_slider_value_changed"]
