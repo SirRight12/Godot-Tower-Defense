@@ -20,6 +20,10 @@ var placeholder_position:Vector3
 var placed_tower = false
 var inspecting_tower = false
 var inspected_tower
+func _ready():
+	follow_mouse.resized.connect(func ():
+		starting_size = follow_percent.size.x
+	)
 func set_filter(color:Color):
 	filter.color = color
 func show_filter():
