@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://6i6yh1tiycmt"]
+[gd_scene load_steps=21 format=3 uid="uid://6i6yh1tiycmt"]
 
 [ext_resource type="Script" path="res://Base.gd" id="1_asqr1"]
 [ext_resource type="Script" path="res://GameManager.gd" id="1_er8mo"]
@@ -17,8 +17,14 @@
 [ext_resource type="PackedScene" uid="uid://dcx6dfcp4u066" path="res://tower_bar.tscn" id="15_8ruae"]
 [ext_resource type="Script" path="res://UpdateText.gd" id="15_eify3"]
 
-[sub_resource type="LabelSettings" id="LabelSettings_g415v"]
-font_size = 27
+[sub_resource type="ViewportTexture" id="ViewportTexture_5fvpw"]
+viewport_path = NodePath("TowerBar/TextViewRes/SubViewport")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_5gmo8"]
+viewport_path = NodePath("Start/Res/SubViewport")
+
+[sub_resource type="LabelSettings" id="LabelSettings_4yqkn"]
+font_size = 4000
 
 [sub_resource type="LabelSettings" id="LabelSettings_5g5cw"]
 font_size = 13
@@ -57,12 +63,15 @@ towers = Array[PackedScene]([ExtResource("11_pbg38"), ExtResource("11_4y2gl"), E
 
 [node name="MoneyManager" type="Node" parent="." node_paths=PackedStringArray("money_display")]
 script = ExtResource("12_jkxa6")
-money_display = NodePath("../TowerBar/Label")
+money_display = NodePath("../TowerBar/TextViewRes/SubViewport/Label")
 
 [node name="TowerBar" parent="." instance=ExtResource("15_8ruae")]
 
-[node name="Label" parent="TowerBar" index="3"]
-theme_override_font_sizes/font_size = 3221
+[node name="TextureRect" parent="TowerBar" index="3"]
+texture = SubResource("ViewportTexture_5fvpw")
+
+[node name="SubViewport" parent="TowerBar/TextViewRes" index="0"]
+script = null
 
 [node name="Start" type="Control" parent="."]
 custom_minimum_size = Vector2(100, 40)
@@ -96,15 +105,30 @@ grow_horizontal = 2
 grow_vertical = 2
 flat = true
 
-[node name="Label" type="Label" parent="Start"]
+[node name="TextureRect" type="TextureRect" parent="Start"]
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
+anchors_preset = -1
+anchor_left = 0.15
+anchor_right = 0.85
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
+texture = SubResource("ViewportTexture_5gmo8")
+expand_mode = 1
+
+[node name="Res" type="Node" parent="Start"]
+
+[node name="SubViewport" type="SubViewport" parent="Start/Res"]
+transparent_bg = true
+size = Vector2i(469, 272)
+
+[node name="Label" type="Label" parent="Start/Res/SubViewport"]
+offset_right = 9388.0
+offset_bottom = 5448.0
+scale = Vector2(0.05, 0.05)
 text = "Start"
-label_settings = SubResource("LabelSettings_g415v")
+label_settings = SubResource("LabelSettings_4yqkn")
 horizontal_alignment = 1
 vertical_alignment = 1
 
