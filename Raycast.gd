@@ -8,6 +8,7 @@ extends Camera3D
 @onready var filter:ColorRect = filter_root.find_child("Filter")
 @onready var root = get_parent_node_3d().get_parent_node_3d().get_parent_node_3d()
 @onready var game:GameManager = root.find_child("GameManager")
+@onready var wave:WaveManager = game.request_manager(GameManager.MANAGERS.WAVE)
 @onready var registry:TowerRegistry = game.request_manager(game.MANAGERS.REGISTRY)
 @onready var money:MoneyManager = game.request_manager(game.MANAGERS.MONEY)
 var can_place_color = Color(1.0,1.0,1.0,0.16)
@@ -20,10 +21,16 @@ var placeholder_position:Vector3
 var placed_tower = false
 var inspecting_tower = false
 var inspected_tower
+var game_ended = false
 func _ready():
 	follow_mouse.resized.connect(func ():
 		starting_size = follow_percent.size.x
 	)
+	wave.beat_game.connect(game_end)
+func game_end():
+	revoke_placeholder()
+	registry.hide_all_tower_deny()
+	game_ended = true
 func set_filter(color:Color):
 	filter.color = color
 func show_filter():
@@ -50,12 +57,13 @@ func revoke_placeholder():
 	place_holder_tower.queue_free()
 	place_holder_tower = false
 func _unhandled_input(event):
+	handle_rotate(event)
+	if game_ended: return
 	handle_cast(event)
 	handle_move(event)
 	handle_tower_select(event)
 	handle_cancel(event)
 	handle_tower_pick(event)
-	handle_rotate(event)
 func cast(mask:int = 1) -> Dictionary:
 	var world = get_world_3d().direct_space_state
 	var mouse = get_viewport().get_mouse_position()

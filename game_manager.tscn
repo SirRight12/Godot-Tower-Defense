@@ -15,7 +15,7 @@
 [ext_resource type="PackedScene" uid="uid://dvbmgppw84ix5" path="res://Scout.tscn" id="11_pbg38"]
 [ext_resource type="Script" path="res://MoneyManager.gd" id="12_jkxa6"]
 [ext_resource type="PackedScene" uid="uid://dcx6dfcp4u066" path="res://tower_bar.tscn" id="15_8ruae"]
-[ext_resource type="Script" path="res://UpdateText.gd" id="15_eify3"]
+[ext_resource type="PackedScene" uid="uid://8qp5smq5g3g5" path="res://time_scale.tscn" id="16_hfatt"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_5fvpw"]
 viewport_path = NodePath("TowerBar/TextViewRes/SubViewport")
@@ -26,13 +26,8 @@ viewport_path = NodePath("Start/Res/SubViewport")
 [sub_resource type="LabelSettings" id="LabelSettings_4yqkn"]
 font_size = 4000
 
-[sub_resource type="LabelSettings" id="LabelSettings_5g5cw"]
-font_size = 13
-outline_size = 4
-outline_color = Color(0, 0, 0, 1)
-shadow_size = 2
-shadow_color = Color(1, 1, 1, 1)
-shadow_offset = Vector2(1.31, 1)
+[sub_resource type="ViewportTexture" id="ViewportTexture_cq4ac"]
+viewport_path = NodePath("TimeScale/Node/SubViewport")
 
 [node name="GameManager" type="Node"]
 script = ExtResource("1_er8mo")
@@ -132,41 +127,12 @@ label_settings = SubResource("LabelSettings_4yqkn")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="TimeScale" type="Control" parent="."]
-layout_mode = 3
-anchor_left = 0.17
-anchor_top = 0.033
-anchor_right = 0.31
-anchor_bottom = 0.083
-grow_horizontal = 2
-grow_vertical = 2
+[node name="TimeScale" parent="." instance=ExtResource("16_hfatt")]
 
-[node name="HSlider" type="HSlider" parent="TimeScale"]
-layout_mode = 1
-anchors_preset = -1
-anchor_right = 0.8
-anchor_bottom = 1.0
-grow_vertical = 2
-max_value = 4.0
-step = 0.1
-value = 1.0
-allow_greater = true
+[node name="TextureRect" parent="TimeScale" index="0"]
+texture = SubResource("ViewportTexture_cq4ac")
 
-[node name="Label" type="Label" parent="TimeScale"]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.8
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 0
-grow_vertical = 2
-text = "1x"
-label_settings = SubResource("LabelSettings_5g5cw")
-horizontal_alignment = 1
-vertical_alignment = 1
-script = ExtResource("15_eify3")
-
-[connection signal="value_changed" from="TimeScale/HSlider" to="TimeScaleManager" method="_on_h_slider_value_changed"]
-[connection signal="value_changed" from="TimeScale/HSlider" to="TimeScale/Label" method="_on_h_slider_value_changed"]
+[connection signal="speed_change" from="TimeScale/Node/SubViewport/Label" to="TimeScaleManager" method="_on_label_speed_change"]
 
 [editable path="TowerBar"]
+[editable path="TimeScale"]

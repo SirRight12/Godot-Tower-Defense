@@ -7,6 +7,7 @@ func apply_income_buffs():
 	#for now do nothing
 	return i
 func _ready():
+	time_scale_change()
 	entity.idle()
 	scaler.scale_changed.connect(time_scale_change)
 	if is_placeholder: return

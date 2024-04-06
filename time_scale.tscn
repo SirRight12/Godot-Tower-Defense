@@ -1,0 +1,83 @@
+[gd_scene load_steps=10 format=3 uid="uid://8qp5smq5g3g5"]
+
+[ext_resource type="Script" path="res://UpdateText.gd" id="1_sakc1"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_xc0sp"]
+viewport_path = NodePath("Node/SubViewport")
+
+[sub_resource type="Gradient" id="Gradient_4pinx"]
+offsets = PackedFloat32Array(0.422535)
+colors = PackedColorArray(0, 0, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_w340h"]
+gradient = SubResource("Gradient_4pinx")
+
+[sub_resource type="Gradient" id="Gradient_v7s44"]
+offsets = PackedFloat32Array(0.996479)
+colors = PackedColorArray(0.28485, 0.28485, 0.28485, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_6npqt"]
+gradient = SubResource("Gradient_v7s44")
+
+[sub_resource type="Gradient" id="Gradient_4m33s"]
+offsets = PackedFloat32Array(0.728873)
+colors = PackedColorArray(1, 1, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_kid3c"]
+gradient = SubResource("Gradient_4m33s")
+
+[sub_resource type="LabelSettings" id="LabelSettings_5g5cw"]
+font_size = 2443
+outline_size = 404
+outline_color = Color(0, 0, 0, 1)
+
+[node name="TimeScale" type="Control"]
+layout_mode = 3
+anchor_left = 0.17
+anchor_top = 0.033
+anchor_right = 0.31
+anchor_bottom = 0.083
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.82
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = SubResource("ViewportTexture_xc0sp")
+expand_mode = 1
+
+[node name="TextureButton" type="TextureButton" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.8
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture_normal = SubResource("GradientTexture1D_w340h")
+texture_pressed = SubResource("GradientTexture1D_6npqt")
+texture_hover = SubResource("GradientTexture1D_kid3c")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="Node" type="Node" parent="."]
+
+[node name="SubViewport" type="SubViewport" parent="Node"]
+transparent_bg = true
+size = Vector2i(250, 166)
+
+[node name="Label" type="Label" parent="Node/SubViewport"]
+offset_right = 40.0
+offset_bottom = 23.0
+scale = Vector2(0.05, 0.05)
+theme_override_font_sizes/font_size = 2121
+text = "1x"
+label_settings = SubResource("LabelSettings_5g5cw")
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("1_sakc1")
+speeds = Array[float]([1.0, 2.0, 4.0, 0.5])
+
+[connection signal="pressed" from="TextureButton" to="Node/SubViewport/Label" method="_on_texture_button_pressed"]

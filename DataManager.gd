@@ -12,5 +12,3 @@ func _ready():
 	print(json_data)
 	if !json_data['faction']:
 		json_data['faction'] = 'none'
-	#test (comment later)
-	#json_data['faction'] = "mercenaries"

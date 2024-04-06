@@ -29,6 +29,7 @@ func time_scale_change():
 	print("hello?")
 	entity.set_anim_speed(scaler.get_time_scale())
 func _ready():
+	time_scale_change()
 	entity.idle()
 	update_range()
 	scaler.scale_changed.connect(time_scale_change)

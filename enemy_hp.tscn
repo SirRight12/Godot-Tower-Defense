@@ -1,4 +1,9 @@
-[gd_scene format=3 uid="uid://c5u3spswx8lr1"]
+[gd_scene load_steps=3 format=3 uid="uid://c5u3spswx8lr1"]
+
+[ext_resource type="Script" path="res://ResizeToText.gd" id="1_filwt"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_ifens"]
+viewport_path = NodePath("Node/SubViewport")
 
 [node name="FollowMouse" type="ColorRect"]
 anchors_preset = -1
@@ -16,13 +21,36 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0.823529, 0, 1)
 
-[node name="Label" type="Label" parent="."]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
+[node name="Node" type="Node" parent="."]
+
+[node name="SubViewport" type="SubViewport" parent="Node"]
+transparent_bg = true
+size = Vector2i(244, 124)
+script = ExtResource("1_filwt")
+
+[node name="Label" type="Label" parent="Node/SubViewport"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -122.0
+offset_top = -62.0
+offset_right = 4772.0
+offset_bottom = 2433.0
 grow_horizontal = 2
 grow_vertical = 2
+scale = Vector2(0.05, 0.05)
+theme_override_font_sizes/font_size = 1831
 text = "10/10"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.3
+anchor_right = 0.7
+anchor_bottom = 1.0
+texture = SubResource("ViewportTexture_ifens")
+expand_mode = 1
