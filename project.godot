@@ -12,7 +12,7 @@ config_version=5
 
 config/name="Samuel Tower Defense"
 run/main_scene="res://main.tscn"
-config/features=PackedStringArray("4.2", "GL Compatibility")
+config/features=PackedStringArray("4.2", "C#", "GL Compatibility")
 config/icon="res://icon.svg"
 config/bg_color=Color(0.14, 0.14, 0.14, 1)
 

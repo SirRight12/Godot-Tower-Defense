@@ -58,6 +58,7 @@ towers = Array[PackedScene]([ExtResource("11_pbg38"), ExtResource("11_4y2gl"), E
 
 [node name="MoneyManager" type="Node" parent="." node_paths=PackedStringArray("money_display")]
 script = ExtResource("12_jkxa6")
+starting_amount = null
 money_display = NodePath("../TowerBar/TextViewRes/SubViewport/Label")
 
 [node name="TowerBar" parent="." instance=ExtResource("15_8ruae")]
