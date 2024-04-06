@@ -15,7 +15,7 @@
 [ext_resource type="PackedScene" uid="uid://dvbmgppw84ix5" path="res://Scout.tscn" id="11_pbg38"]
 [ext_resource type="Script" path="res://MoneyManager.gd" id="12_jkxa6"]
 [ext_resource type="PackedScene" uid="uid://dcx6dfcp4u066" path="res://tower_bar.tscn" id="15_8ruae"]
-[ext_resource type="PackedScene" uid="uid://8qp5smq5g3g5" path="res://time_scale.tscn" id="16_hfatt"]
+[ext_resource type="PackedScene" path="res://time_scale.tscn" id="16_hfatt"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_5fvpw"]
 viewport_path = NodePath("TowerBar/TextViewRes/SubViewport")
