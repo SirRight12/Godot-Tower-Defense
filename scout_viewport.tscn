@@ -21,6 +21,12 @@ shadow_enabled = true
 transform = Transform3D(-0.430511, 0, 0.902585, 0, 1, 0, -0.902585, 0, -0.430511, 0, -0.091, -0.212)
 script = ExtResource("2_uwgqf")
 
+[node name="Gun2" parent="Entity/RootBone/UpperBody/RightArm" index="1"]
+transform = Transform3D(-3.61999e-06, 1, 0, -1, -3.61999e-06, 0, 0, 0, 1, 0, -0.0625, 0.015625)
+
+[node name="LeftToes" parent="Entity/RootBone/LowerBody/LeftLeg" index="0"]
+transform = Transform3D(0.998993, -0.0448726, -1.16623e-06, 0.0448726, 0.998992, 0.000694434, -2.9996e-05, -0.000693786, 1, 0, -0.078, 0)
+
 [node name="ViewportPlayer" parent="." node_paths=PackedStringArray("anim_node") instance=ExtResource("3_xtqkr")]
 anim_node = NodePath("../Entity")
 

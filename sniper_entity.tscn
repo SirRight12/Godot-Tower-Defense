@@ -1,22 +1,9 @@
-[gd_scene load_steps=27 format=3 uid="uid://cukwecad27tur"]
+[gd_scene load_steps=24 format=3 uid="uid://cukwecad27tur"]
 
 [ext_resource type="Script" path="res://TowerAnimations.gd" id="1_m3rp3"]
 [ext_resource type="ArrayMesh" uid="uid://yqlrd2olxe1s" path="res://sniperCamo.obj" id="2_5nex7"]
 [ext_resource type="ArrayMesh" uid="uid://c3vbu4pf6r6qd" path="res://ammo_sniper.obj" id="3_4l2sb"]
 [ext_resource type="Script" path="res://eject_shell.gd" id="4_rng8b"]
-
-[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_y5up3"]
-sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
-ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
-
-[sub_resource type="Sky" id="Sky_ruofn"]
-sky_material = SubResource("ProceduralSkyMaterial_y5up3")
-
-[sub_resource type="Environment" id="Environment_j4fmp"]
-background_mode = 2
-sky = SubResource("Sky_ruofn")
-tonemap_mode = 2
-glow_enabled = true
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_nsop7"]
 resource_name = "material_0"
@@ -155,13 +142,6 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_gmi8s")
 
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_v2ahd"]
-direction = Vector3(-0.54, 0, 0)
-spread = 0.0
-initial_velocity_min = 1.0
-initial_velocity_max = 1.0
-gravity = Vector3(-1.545, -7.515, 0)
-
 [sub_resource type="ArrayMesh" id="ArrayMesh_dtqb8"]
 _surfaces = [{
 "aabb": AABB(-0.03125, 0, 0.03125, 0.03126, 0.078135, 0.03126),
@@ -225,6 +205,59 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_k35d8")
+
+[sub_resource type="Animation" id="Animation_ads3p"]
+resource_name = "Dance"
+length = 0.716
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("RootBone/UpperBody/LeftArm:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
+"transitions": PackedFloat32Array(0.25, 1, 1, 0.233258),
+"update": 0,
+"values": [Vector3(3.48787e-16, 3.48787e-16, 0.959931), Vector3(3.48787e-16, 3.48787e-16, 0.959931), Vector3(3.48787e-16, 3.48787e-16, 3.50811), Vector3(3.48787e-16, 3.48787e-16, 2.61799)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("RootBone/UpperBody/RightArm:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(3.48787e-16, 3.48787e-16, 2.61799), Vector3(0.113959, -0.0107065, 2.52411), Vector3(0.113959, 0.338394, 2.52411), Vector3(3.48787e-16, 3.48787e-16, 2.61799)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("RootBone/UpperBody/LeftArm:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0.063, -0.031)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("RootBone/UpperBody/RightArm:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0.0625, 0.03125)]
+}
 
 [sub_resource type="Animation" id="Animation_fn2tu"]
 resource_name = "Idle"
@@ -353,6 +386,18 @@ tracks/4/keys = {
 "update": 0,
 "values": [Vector3(1.49012e-08, 3.72529e-09, -1.5708)]
 }
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("RootBone/UpperBody:rotation")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
 
 [sub_resource type="Animation" id="Animation_jsu35"]
 resource_name = "Shoot"
@@ -419,7 +464,7 @@ tracks/4/keys = {
 tracks/5/type = "method"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("RootBone/UpperBody/RightArm/Gun/GPUParticles3D")
+tracks/5/path = NodePath("RootBone/UpperBody/RightArm/Gun/CPUParticles3D")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
@@ -430,9 +475,22 @@ tracks/5/keys = {
 "method": &"eject"
 }]
 }
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("RootBone/UpperBody:rotation")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(3.48787e-16, -0.279253, 3.48787e-16), Vector3(3.48787e-16, 3.48787e-16, 3.48787e-16)]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_cmeiv"]
 _data = {
+"Dance": SubResource("Animation_ads3p"),
 "Idle": SubResource("Animation_fn2tu"),
 "RESET": SubResource("Animation_6gkgs"),
 "Shoot": SubResource("Animation_jsu35")
@@ -441,9 +499,6 @@ _data = {
 [node name="TowerAnimations" type="Node3D" node_paths=PackedStringArray("player")]
 script = ExtResource("1_m3rp3")
 player = NodePath("AnimationPlayer")
-
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource("Environment_j4fmp")
 
 [node name="RootBone" type="Node3D" parent="."]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)
@@ -483,23 +538,23 @@ mesh = SubResource("ArrayMesh_o5luc")
 skeleton = NodePath("")
 
 [node name="Gun" type="Node3D" parent="RootBone/UpperBody/RightArm"]
-transform = Transform3D(-4.37114e-08, 1, 3.72529e-09, -1, -4.37114e-08, -1.49012e-08, -1.49012e-08, -3.72529e-09, 1, 0.0192698, -0.072, 0.0171135)
+transform = Transform3D(-3.61999e-06, 1, 3.72529e-09, -1, -3.61999e-06, -1.49012e-08, -1.49012e-08, -3.72534e-09, 1, 0.0192698, -0.072, 0.0171135)
 
 [node name="Sniper" type="MeshInstance3D" parent="RootBone/UpperBody/RightArm/Gun"]
 transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)
 mesh = ExtResource("2_5nex7")
 
-[node name="GPUParticles3D" type="GPUParticles3D" parent="RootBone/UpperBody/RightArm/Gun"]
-transform = Transform3D(-4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0, 1, 0, 0, 0.00045976)
+[node name="CPUParticles3D" type="CPUParticles3D" parent="RootBone/UpperBody/RightArm/Gun"]
+transform = Transform3D(-4.37114e-08, 1, 3.48787e-16, -1, -4.37114e-08, -3.48787e-16, -3.48787e-16, -3.48787e-16, 1, 0, 0, 0)
 emitting = false
 amount = 1
 lifetime = 0.5
 one_shot = true
-explosiveness = 1.0
-randomness = 1.0
-visibility_aabb = AABB(-0.240573, -0.0986327, -0.245691, 0.481145, 0.197265, 0.491382)
-process_material = SubResource("ParticleProcessMaterial_v2ahd")
-draw_pass_1 = ExtResource("3_4l2sb")
+mesh = ExtResource("3_4l2sb")
+spread = 27.0
+gravity = Vector3(-2.36, -8.81, 2.08165e-12)
+scale_amount_min = 3.0
+scale_amount_max = 3.0
 script = ExtResource("4_rng8b")
 
 [node name="LowerBody" type="Node3D" parent="RootBone"]

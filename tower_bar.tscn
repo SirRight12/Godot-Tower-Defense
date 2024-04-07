@@ -1,13 +1,23 @@
-[gd_scene load_steps=8 format=3 uid="uid://dcx6dfcp4u066"]
+[gd_scene load_steps=12 format=3 uid="uid://dcx6dfcp4u066"]
 
 [ext_resource type="PackedScene" uid="uid://c8mpj1ian0gp1" path="res://scout_viewport.tscn" id="1_2b2xf"]
 [ext_resource type="PackedScene" uid="uid://b1888copewp14" path="res://farm_viewport.tscn" id="2_coyoi"]
+[ext_resource type="PackedScene" uid="uid://cd46gqxeibwrk" path="res://sniper_viewport.tscn" id="3_7cesw"]
 [ext_resource type="Script" path="res://ResizeToText.gd" id="3_ugsr1"]
 
 [sub_resource type="Environment" id="Environment_v7e1u"]
 
 [sub_resource type="World3D" id="World3D_ajp6u"]
 environment = SubResource("Environment_v7e1u")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_744si"]
+viewport_path = NodePath("Scout/Node/SubViewport")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_gg6bw"]
+viewport_path = NodePath("Farmer/Node/SubViewport")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_por0c"]
+viewport_path = NodePath("Sniper/Node/SubViewport")
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_outm4"]
 viewport_path = NodePath("TextViewRes/SubViewport")
@@ -58,6 +68,32 @@ render_target_update_mode = 4
 
 [node name="Node3D" parent="Scout/SubViewportContainer/SubViewport" instance=ExtResource("1_2b2xf")]
 
+[node name="TextureRect" type="TextureRect" parent="Scout"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.3
+anchor_top = 0.7
+anchor_right = 0.7
+anchor_bottom = 1.0
+texture = SubResource("ViewportTexture_744si")
+expand_mode = 1
+
+[node name="Node" type="Node" parent="Scout"]
+
+[node name="SubViewport" type="SubViewport" parent="Scout/Node"]
+transparent_bg = true
+size = Vector2i(121, 72)
+
+[node name="Label" type="Label" parent="Scout/Node/SubViewport"]
+offset_right = 2424.0
+offset_bottom = 1446.0
+scale = Vector2(0.05, 0.05)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 370
+theme_override_font_sizes/font_size = 1061
+text = "$100"
+
 [node name="Farmer" type="Control" parent="."]
 layout_mode = 1
 anchor_left = 0.2
@@ -83,6 +119,85 @@ render_target_update_mode = 4
 
 [node name="Node3D" parent="Farmer/SubViewportContainer/SubViewport" instance=ExtResource("2_coyoi")]
 
+[node name="TextureRect" type="TextureRect" parent="Farmer"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.3
+anchor_top = 0.7
+anchor_right = 0.7
+anchor_bottom = 1.0
+texture = SubResource("ViewportTexture_gg6bw")
+expand_mode = 1
+
+[node name="Node" type="Node" parent="Farmer"]
+
+[node name="SubViewport" type="SubViewport" parent="Farmer/Node"]
+transparent_bg = true
+size = Vector2i(121, 72)
+script = ExtResource("3_ugsr1")
+
+[node name="Label" type="Label" parent="Farmer/Node/SubViewport"]
+offset_right = 40.0
+offset_bottom = 23.0
+scale = Vector2(0.05, 0.05)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 370
+theme_override_font_sizes/font_size = 1061
+text = "$100"
+
+[node name="Sniper" type="Control" parent="."]
+layout_mode = 1
+anchor_left = 0.4
+anchor_right = 0.6
+anchor_bottom = 1.0
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="Sniper"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+stretch = true
+
+[node name="SubViewport2" type="SubViewport" parent="Sniper/SubViewportContainer"]
+own_world_3d = true
+world_3d = SubResource("World3D_ajp6u")
+transparent_bg = true
+handle_input_locally = false
+size = Vector2i(92, 87)
+render_target_update_mode = 4
+
+[node name="Node3D2" parent="Sniper/SubViewportContainer/SubViewport2" instance=ExtResource("3_7cesw")]
+
+[node name="TextureRect" type="TextureRect" parent="Sniper"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.3
+anchor_top = 0.7
+anchor_right = 0.7
+anchor_bottom = 1.0
+texture = SubResource("ViewportTexture_por0c")
+expand_mode = 1
+
+[node name="Node" type="Node" parent="Sniper"]
+
+[node name="SubViewport" type="SubViewport" parent="Sniper/Node"]
+transparent_bg = true
+size = Vector2i(121, 72)
+script = ExtResource("3_ugsr1")
+
+[node name="Label" type="Label" parent="Sniper/Node/SubViewport"]
+offset_right = 40.0
+offset_bottom = 23.0
+scale = Vector2(0.05, 0.05)
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 370
+theme_override_font_sizes/font_size = 1061
+text = "$200"
+
 [node name="TextureRect" type="TextureRect" parent="."]
 layout_mode = 1
 anchors_preset = -1
@@ -102,7 +217,6 @@ transparent_bg = true
 handle_input_locally = false
 size = Vector2i(84, 50)
 render_target_update_mode = 4
-script = ExtResource("3_ugsr1")
 
 [node name="Label" type="Label" parent="TextViewRes/SubViewport"]
 offset_right = 40.0

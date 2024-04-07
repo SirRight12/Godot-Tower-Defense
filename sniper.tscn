@@ -11,6 +11,7 @@ height = 1.03808
 [node name="Sniper" type="Node3D"]
 script = ExtResource("1_ca1wd")
 damage = 4
+reload_time = 1.5
 tower_range = 5.0
 cost = 200
 

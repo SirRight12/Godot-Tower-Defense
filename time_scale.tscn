@@ -1,6 +1,7 @@
-[gd_scene load_steps=10 format=3 uid="uid://8qp5smq5g3g5"]
+[gd_scene load_steps=11 format=3 uid="uid://8qp5smq5g3g5"]
 
 [ext_resource type="Script" path="res://UpdateText.gd" id="1_sakc1"]
+[ext_resource type="Script" path="res://time_scale_button.gd" id="1_xhkt4"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_xc0sp"]
 viewport_path = NodePath("Node/SubViewport")
@@ -31,7 +32,7 @@ font_size = 2443
 outline_size = 404
 outline_color = Color(0, 0, 0, 1)
 
-[node name="TimeScale" type="Control"]
+[node name="TimeScale" type="Control" node_paths=PackedStringArray("text")]
 layout_mode = 3
 anchor_left = 0.17
 anchor_top = 0.033
@@ -39,6 +40,8 @@ anchor_right = 0.31
 anchor_bottom = 0.083
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_xhkt4")
+text = NodePath("Node/SubViewport/Label")
 
 [node name="TextureRect" type="TextureRect" parent="."]
 layout_mode = 1

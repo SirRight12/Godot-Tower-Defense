@@ -15,5 +15,6 @@ func div(val):
 	var new_val = val/time_scale
 	return new_val
 
-func _on_label_speed_change(val):
+
+func _on_time_scale_time_scale_changed(val):
 	time_scale = val

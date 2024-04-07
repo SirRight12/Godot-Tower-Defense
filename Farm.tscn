@@ -14,6 +14,7 @@ viewport_path = NodePath("SubViewport")
 
 [node name="Farm" type="Node3D"]
 script = ExtResource("1_jyfsr")
+income = 50
 
 [node name="Entity" parent="." instance=ExtResource("2_3xu8r")]
 transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 0, 0)

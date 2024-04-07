@@ -1,6 +1,8 @@
 @tool
-extends GPUParticles3D
+extends CPUParticles3D
 
 
 func eject():
+	print("helloism?")
+	restart()
 	emitting = true
