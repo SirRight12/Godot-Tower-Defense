@@ -1,0 +1,95 @@
+[gd_scene load_steps=7 format=3 uid="uid://d282qfx8fhoiv"]
+
+[ext_resource type="PackedScene" uid="uid://cd46gqxeibwrk" path="res://sniper_viewport.tscn" id="1_kw7n6"]
+[ext_resource type="Script" path="res://tower_stats.gd" id="1_vkk15"]
+[ext_resource type="PackedScene" uid="uid://c8mpj1ian0gp1" path="res://scout_viewport.tscn" id="2_jaoak"]
+[ext_resource type="PackedScene" uid="uid://b1888copewp14" path="res://farm_viewport.tscn" id="4_ohypu"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_x6mpg"]
+viewport_path = NodePath("BuyViewport/SubViewport")
+
+[sub_resource type="World3D" id="World3D_ap3nj"]
+
+[node name="TowerStats" type="Control"]
+layout_mode = 3
+anchor_left = 0.05
+anchor_top = 0.3
+anchor_right = 0.2
+anchor_bottom = 0.7
+script = ExtResource("1_vkk15")
+tower_dictionary = {
+"Farm": ExtResource("4_ohypu"),
+"Scout": ExtResource("2_jaoak"),
+"Sniper": ExtResource("1_kw7n6")
+}
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.223529, 0.223529, 0.223529, 0.611765)
+
+[node name="BuyUpgrade" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.32
+anchor_top = 0.85
+anchor_right = 0.68
+anchor_bottom = 0.95
+flat = true
+
+[node name="ColorRect" type="ColorRect" parent="BuyUpgrade"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0.803922, 0, 1)
+
+[node name="TextureRect" type="TextureRect" parent="BuyUpgrade"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.15
+anchor_right = 0.85
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("ViewportTexture_x6mpg")
+expand_mode = 1
+
+[node name="Tower" type="Control" parent="."]
+layout_mode = 1
+anchor_left = 0.2
+anchor_right = 0.8
+anchor_bottom = 0.4
+
+[node name="Container" type="SubViewportContainer" parent="Tower"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+stretch = true
+
+[node name="SV" type="SubViewport" parent="Tower/Container"]
+world_3d = SubResource("World3D_ap3nj")
+transparent_bg = true
+handle_input_locally = false
+size = Vector2i(103, 103)
+render_target_update_mode = 4
+
+[node name="BuyViewport" type="Node" parent="."]
+
+[node name="SubViewport" type="SubViewport" parent="BuyViewport"]
+transparent_bg = true
+size = Vector2i(113, 84)
+
+[node name="Label" type="Label" parent="BuyViewport/SubViewport"]
+offset_right = 444.0
+offset_bottom = 588.0
+scale = Vector2(0.05, 0.05)
+theme_override_font_sizes/font_size = 1241
+text = "Buy"

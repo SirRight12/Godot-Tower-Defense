@@ -2,6 +2,7 @@ extends Camera3D
 @export var filter_root:Control
 @export var follow_mouse:ColorRect
 @export var console:Console
+@export var tower_stats:Control
 @onready var follow_percent = follow_mouse.find_child("HP Percent")
 @onready var starting_size = follow_percent.size.x
 @onready var follow_text = follow_mouse.find_child("Label")
@@ -131,6 +132,8 @@ func handle_tower_pick(event):
 		var result = cast(2)
 		if !result:
 			if inspected_tower:
+				tower_stats.remove_tower_stuff()
+				tower_stats.hide()
 				inspected_tower.hide_all()
 				inspecting_tower = false
 				inspected_tower = false
@@ -141,6 +144,8 @@ func handle_tower_pick(event):
 			inspected_tower.hide_all()
 		var parent:Tower = result['collider'].get_parent_node_3d()
 		parent.show_all()
+		tower_stats.show()
+		tower_stats.set_up_for_tower(parent)
 		inspecting_tower = true
 		inspected_tower = parent
 

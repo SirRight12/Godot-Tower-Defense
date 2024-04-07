@@ -223,5 +223,5 @@ offset_right = 40.0
 offset_bottom = 23.0
 scale = Vector2(0.01, 0.01)
 theme_override_font_sizes/font_size = 700
-text = "$100"
+text = "$300"
 label_settings = SubResource("LabelSettings_mfflv")

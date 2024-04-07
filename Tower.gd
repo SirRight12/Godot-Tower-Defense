@@ -1,6 +1,7 @@
 @icon("res://Tower.svg")
 extends Node3D
 class_name Tower
+@export var tower_name = "tower"
 @export var tower_range:float:
 	set = range_changed
 @export var cost:int = 100

@@ -12,6 +12,7 @@ height = 0.5
 script = ExtResource("3_avxn1")
 reload_time = 0.9
 money_bonus = 2.0
+tower_name = "Scout"
 tower_range = 2.0
 
 [node name="Entity" parent="." instance=ExtResource("2_ou0um")]
