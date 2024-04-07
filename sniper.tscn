@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=3 uid="uid://c4wy6u2gvyw2g"]
+
+[ext_resource type="Script" path="res://GunTower.gd" id="1_ca1wd"]
+[ext_resource type="PackedScene" uid="uid://cukwecad27tur" path="res://sniper_entity.tscn" id="2_ccnd1"]
+[ext_resource type="PackedScene" uid="uid://clx7bg4kof7n2" path="res://tower_utils.tscn" id="3_4q7fv"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_1xyp4"]
+radius = 0.305122
+height = 1.03808
+
+[node name="Sniper" type="Node3D"]
+script = ExtResource("1_ca1wd")
+damage = 4
+tower_range = 5.0
+cost = 200
+
+[node name="Entity" parent="." instance=ExtResource("2_ccnd1")]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 0, 0)
+
+[node name="TowerUtils" parent="." instance=ExtResource("3_4q7fv")]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.216622, 0)
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+shape = SubResource("CapsuleShape3D_1xyp4")

@@ -1,6 +1,7 @@
 extends Camera3D
 @export var filter_root:Control
 @export var follow_mouse:ColorRect
+@export var console:Console
 @onready var follow_percent = follow_mouse.find_child("HP Percent")
 @onready var starting_size = follow_percent.size.x
 @onready var follow_text = follow_mouse.find_child("Label")
