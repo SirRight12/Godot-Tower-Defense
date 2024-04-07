@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://6i6yh1tiycmt"]
+[gd_scene load_steps=22 format=3 uid="uid://6i6yh1tiycmt"]
 
 [ext_resource type="Script" path="res://Base.gd" id="1_asqr1"]
 [ext_resource type="Script" path="res://GameManager.gd" id="1_er8mo"]
@@ -14,8 +14,9 @@
 [ext_resource type="PackedScene" uid="uid://6erd1cmarykt" path="res://Farm.tscn" id="11_4y2gl"]
 [ext_resource type="PackedScene" uid="uid://dvbmgppw84ix5" path="res://Scout.tscn" id="11_pbg38"]
 [ext_resource type="Script" path="res://MoneyManager.gd" id="12_jkxa6"]
+[ext_resource type="PackedScene" uid="uid://c4wy6u2gvyw2g" path="res://sniper.tscn" id="14_l81hn"]
 [ext_resource type="PackedScene" uid="uid://dcx6dfcp4u066" path="res://tower_bar.tscn" id="15_8ruae"]
-[ext_resource type="PackedScene" path="res://time_scale.tscn" id="16_hfatt"]
+[ext_resource type="PackedScene" uid="uid://8qp5smq5g3g5" path="res://time_scale.tscn" id="16_hfatt"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_5fvpw"]
 viewport_path = NodePath("TowerBar/TextViewRes/SubViewport")
@@ -54,7 +55,7 @@ zickey = ExtResource("7_ufg46")
 
 [node name="TowerRegistry" type="Node" parent="."]
 script = ExtResource("10_erg5a")
-towers = Array[PackedScene]([ExtResource("11_pbg38"), ExtResource("11_4y2gl"), ExtResource("11_pbg38"), ExtResource("11_pbg38"), ExtResource("11_pbg38")])
+towers = Array[PackedScene]([ExtResource("11_pbg38"), ExtResource("11_4y2gl"), ExtResource("14_l81hn"), ExtResource("11_pbg38"), ExtResource("11_pbg38")])
 
 [node name="MoneyManager" type="Node" parent="." node_paths=PackedStringArray("money_display")]
 script = ExtResource("12_jkxa6")
