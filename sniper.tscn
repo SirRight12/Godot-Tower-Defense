@@ -1,8 +1,16 @@
-[gd_scene load_steps=5 format=3 uid="uid://c4wy6u2gvyw2g"]
+[gd_scene load_steps=7 format=3 uid="uid://c4wy6u2gvyw2g"]
 
 [ext_resource type="Script" path="res://GunTower.gd" id="1_ca1wd"]
 [ext_resource type="PackedScene" uid="uid://cukwecad27tur" path="res://sniper_entity.tscn" id="2_ccnd1"]
+[ext_resource type="Script" path="res://DamageTowerUpgrade.gd" id="2_ooxfq"]
 [ext_resource type="PackedScene" uid="uid://clx7bg4kof7n2" path="res://tower_utils.tscn" id="3_4q7fv"]
+
+[sub_resource type="Resource" id="Resource_y7cv1"]
+script = ExtResource("2_ooxfq")
+damage = 1
+attack_speed = 1.0
+cost = 100
+upgrade_range = 0.0
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_1xyp4"]
 radius = 0.305122
@@ -16,6 +24,7 @@ money_bonus = 2.0
 tower_name = "Sniper"
 tower_range = 5.0
 cost = 200
+upgrades = Array[Resource("res://Upgrade.gd")]([SubResource("Resource_y7cv1")])
 
 [node name="Entity" parent="." instance=ExtResource("2_ccnd1")]
 transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 0, 0)

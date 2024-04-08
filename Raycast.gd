@@ -31,6 +31,12 @@ func _ready():
 func game_end():
 	revoke_placeholder()
 	registry.hide_all_tower_deny()
+	tower_stats.remove_tower_stuff()
+	tower_stats.hide()
+	if inspecting_tower:
+		inspected_tower.hide_range()
+		inspecting_tower = false
+		inspected_tower = false
 	game_ended = true
 func set_filter(color:Color):
 	filter.color = color

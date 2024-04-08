@@ -1,8 +1,16 @@
-[gd_scene load_steps=5 format=3 uid="uid://dvbmgppw84ix5"]
+[gd_scene load_steps=7 format=3 uid="uid://dvbmgppw84ix5"]
 
 [ext_resource type="PackedScene" uid="uid://c8re26m6egyhe" path="res://scout_entity.tscn" id="2_ou0um"]
+[ext_resource type="Script" path="res://DamageTowerUpgrade.gd" id="2_s3jji"]
 [ext_resource type="PackedScene" uid="uid://clx7bg4kof7n2" path="res://tower_utils.tscn" id="2_ujq4i"]
 [ext_resource type="Script" path="res://GunTower.gd" id="3_avxn1"]
+
+[sub_resource type="Resource" id="Resource_4a57q"]
+script = ExtResource("2_s3jji")
+damage = 0
+attack_speed = 0.1
+cost = 100
+upgrade_range = 1.0
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_8io4t"]
 radius = 0.125
@@ -14,6 +22,7 @@ reload_time = 0.9
 money_bonus = 2.0
 tower_name = "Scout"
 tower_range = 2.0
+upgrades = Array[Resource("res://Upgrade.gd")]([SubResource("Resource_4a57q")])
 
 [node name="Entity" parent="." instance=ExtResource("2_ou0um")]
 transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 0, 0)

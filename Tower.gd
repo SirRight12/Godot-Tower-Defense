@@ -6,6 +6,7 @@ class_name Tower
 	set = range_changed
 @export var cost:int = 100
 @export var upgrades:Array[Upgrade]
+var upgrade = -1
 @onready var utils = find_child("TowerUtils")
 @onready var entity = find_child("Entity")
 @onready var range_util:TowerRange = get_tower_util("Range")
@@ -22,6 +23,10 @@ func range_changed(val):
 	if !is_node_ready():
 		await ready
 	update_range()
+func apply_upgrade(upgrade_to_apply):
+	apply_regular_upgrade(upgrade_to_apply)
+func apply_regular_upgrade(upgrade_to_apply:Upgrade):
+	tower_range += upgrade_to_apply.upgrade_range
 func update_range():
 	range_util.size = tower_range
 func _init():

@@ -3,11 +3,15 @@ extends Tower
 class_name DamageTower
 func _init():
 	assert(false,"DamageTower is an abstract class, try using GunTower")
-@export var damage:int = 1:
-	get = get_damage
-@export var reload_time:float = 1:
-	get = get_reload_time
+@export var damage:int = 1
+@export var reload_time:float = 1
 @export var money_bonus:float = 1.0
+func apply_upgrade(upgrade_to_apply:DamageTowerUpgrade):
+	apply_regular_upgrade(upgrade_to_apply)
+	apply_damage_upgrade(upgrade_to_apply)
+func apply_damage_upgrade(upgrade_to_apply:DamageTowerUpgrade):
+	reload_time -= upgrade_to_apply.attack_speed
+	damage += upgrade_to_apply.damage
 var awaiting_attack = false
 func _process(_delta):
 	if is_placeholder: return
@@ -19,7 +23,7 @@ func _process(_delta):
 	entity.rotation.x = 0
 	entity.rotation.z = 0
 	_shoot(target)
-	await timeout(reload_time)
+	await timeout(get_reload_time())
 	awaiting_attack = false
 	pass
 func timeout(time):

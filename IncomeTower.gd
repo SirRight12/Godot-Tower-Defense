@@ -18,3 +18,8 @@ func generate_income():
 	$IncomeText.recieved_money(income,scaler)
 func _init():
 	pass
+func apply_upgrade(upgrade_to_apply:Upgrade):
+	apply_regular_upgrade(upgrade_to_apply)
+	apply_income_upgrade(upgrade_to_apply)
+func apply_income_upgrade(upgrade_to_apply:IncomeTowerUpgrade):
+	income += upgrade_to_apply.income
