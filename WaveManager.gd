@@ -9,6 +9,7 @@ class_name WaveManager
 @onready var game:GameManager = get_parent()
 @onready var base:Base = game.request_manager(game.MANAGERS.BASE)
 @onready var money:MoneyManager = game.request_manager(game.MANAGERS.MONEY)
+@onready var wave_text = game.request_manager(game.MANAGERS.WAVETEXT)
 @onready var start_node = $"../Start"
 @onready var start_button = $"../Start/Button"
 var time_scale_manager:TimeScale
@@ -17,11 +18,16 @@ signal wave_end()
 signal beat_game()
 var waves:Array
 var enemies_left
+func clear_text():
+	await timeout(.3)
+	wave_text.clear()
+	
 func _ready():
 	time_scale_manager = get_parent().find_child("TimeScaleManager")
 	await start_button.pressed
 	start_node.queue_free()
 	start_waves()
+	wave_text.text_done.connect(clear_text)
 func start_waves():
 	waves = current_game_mode.unpack_waves()
 	start_wave(current_wave)
@@ -32,6 +38,9 @@ func start_wave(idx):
 	var wave_data = waves[idx]
 	var wave = wave_data['wave']
 	money.add(wave_data['bonus'])
+	print("Begin ",wave_data," HI")
+	if wave_data['message']:
+		wave_text.cool_text(wave_data['message'])
 	wave_end.emit()
 	await timeout(time_scale_manager.div(wave_data['delay']))
 	enemies_left = wave.size()

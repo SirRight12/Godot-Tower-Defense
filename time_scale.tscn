@@ -51,6 +51,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 texture = SubResource("ViewportTexture_xc0sp")
 expand_mode = 1
+stretch_mode = 5
 
 [node name="TextureButton" type="TextureButton" parent="."]
 layout_mode = 1
@@ -69,7 +70,7 @@ stretch_mode = 0
 
 [node name="SubViewport" type="SubViewport" parent="Node"]
 transparent_bg = true
-size = Vector2i(250, 166)
+size = Vector2i(242, 166)
 
 [node name="Label" type="Label" parent="Node/SubViewport"]
 offset_right = 40.0

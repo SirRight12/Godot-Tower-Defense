@@ -15,4 +15,3 @@ func _ready():
 		faction_stats[faction.name]['DN'] = faction.D_negative
 		faction_stats[faction.name]['IB'] = faction.income_boost
 		faction_stats[faction.name]['IN'] = faction.I_negative
-	print(faction_stats)

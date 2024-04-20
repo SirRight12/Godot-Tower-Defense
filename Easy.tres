@@ -9,6 +9,7 @@ delay = 0
 bonus = 0
 enemies = Array[int]([0, 0, 0, 0])
 times = Array[int]([0, 1000, 1000, 1000])
+message = "Hello, welcome to the greatest game of all time"
 
 [sub_resource type="Resource" id="Resource_qwc00"]
 script = ExtResource("2_13fv8")
@@ -16,6 +17,7 @@ delay = 4
 bonus = 100
 enemies = Array[int]([0, 0, 0, 0, 0, 0])
 times = Array[int]([0, 1000, 1000, 1000, 1000, 1000])
+message = "Wow, so unique, I know"
 
 [sub_resource type="Resource" id="Resource_3vsx7"]
 script = ExtResource("2_13fv8")
@@ -23,6 +25,7 @@ delay = 2
 bonus = 100
 enemies = Array[int]([0, 0, 0, 0, 0, 0, 0, 0])
 times = Array[int]([0, 1000, 1000, 1000, 1000, 1000, 1000, 1000])
+message = ""
 
 [sub_resource type="Resource" id="Resource_hsc00"]
 script = ExtResource("2_13fv8")
@@ -30,6 +33,7 @@ delay = 4
 bonus = 150
 enemies = Array[int]([0, 0, 0, 0, 0, 0, 0, 0, 0, 0])
 times = Array[int]([0, 1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000])
+message = "no"
 
 [resource]
 script = ExtResource("1_8bhq4")

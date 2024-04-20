@@ -1,6 +1,6 @@
 extends Node
 class_name GameManager
-enum MANAGERS{WAVE,BASE,TIMESCALE,REGISTRY,MONEY,DATA,FACTIONS}
+enum MANAGERS{WAVE,BASE,TIMESCALE,REGISTRY,MONEY,DATA,FACTIONS,WAVETEXT}
 func request_manager(type:MANAGERS) -> Node:
 	match (type):
 		0:
@@ -24,5 +24,8 @@ func request_manager(type:MANAGERS) -> Node:
 		6:
 			#Factions
 			return $FactionManager
+		7:
+			#Wave Text
+			return $WaveText
 	# Default
 	return Node.new()

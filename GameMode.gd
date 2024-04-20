@@ -17,6 +17,7 @@ func unpack_waves():
 		var times = child.times
 		var wave_delay = child.delay
 		var wave_bonus = child.bonus
+		var wave_message = child.message
 		for y in len(enemies):
 			wave_return[y] = {
 				"type": enemies[y],
@@ -26,6 +27,7 @@ func unpack_waves():
 			"wave": wave_return,
 			"delay": wave_delay,
 			"bonus": wave_bonus,
+			"message": wave_message,
 		}
 		waves_array.append(return_item)
 	return waves_array

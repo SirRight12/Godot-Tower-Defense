@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://6i6yh1tiycmt"]
+[gd_scene load_steps=21 format=3 uid="uid://6i6yh1tiycmt"]
 
 [ext_resource type="Script" path="res://Base.gd" id="1_asqr1"]
 [ext_resource type="Script" path="res://GameManager.gd" id="1_er8mo"]
@@ -17,6 +17,7 @@
 [ext_resource type="PackedScene" uid="uid://c4wy6u2gvyw2g" path="res://sniper.tscn" id="14_l81hn"]
 [ext_resource type="PackedScene" uid="uid://dcx6dfcp4u066" path="res://tower_bar.tscn" id="15_8ruae"]
 [ext_resource type="PackedScene" uid="uid://8qp5smq5g3g5" path="res://time_scale.tscn" id="16_hfatt"]
+[ext_resource type="PackedScene" uid="uid://eiqjv7ll3j7k" path="res://text.tscn" id="18_gmoyv"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_5gmo8"]
 viewport_path = NodePath("Start/Res/SubViewport")
@@ -118,5 +119,8 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="TimeScale" parent="." instance=ExtResource("16_hfatt")]
+
+[node name="WaveText" parent="." instance=ExtResource("18_gmoyv")]
+mouse_filter = 2
 
 [connection signal="time_scale_changed" from="TimeScale" to="TimeScaleManager" method="_on_time_scale_time_scale_changed"]

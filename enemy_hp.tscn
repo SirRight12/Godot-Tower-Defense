@@ -54,3 +54,4 @@ anchor_right = 0.7
 anchor_bottom = 1.0
 texture = SubResource("ViewportTexture_ifens")
 expand_mode = 1
+stretch_mode = 5
