@@ -35,9 +35,9 @@ outline_color = Color(0, 0, 0, 1)
 [node name="TimeScale" type="Control" node_paths=PackedStringArray("text")]
 layout_mode = 3
 anchor_left = 0.17
-anchor_top = 0.033
+anchor_top = 0.083
 anchor_right = 0.31
-anchor_bottom = 0.083
+anchor_bottom = 0.133
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_xhkt4")

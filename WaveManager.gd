@@ -19,7 +19,7 @@ signal beat_game()
 var waves:Array
 var enemies_left
 func clear_text():
-	await timeout(.3)
+	await timeout(time_scale_manager.div(.3))
 	wave_text.clear()
 	
 func _ready():
@@ -38,7 +38,6 @@ func start_wave(idx):
 	var wave_data = waves[idx]
 	var wave = wave_data['wave']
 	money.add(wave_data['bonus'])
-	print("Begin ",wave_data," HI")
 	if wave_data['message']:
 		wave_text.cool_text(wave_data['message'])
 	wave_end.emit()

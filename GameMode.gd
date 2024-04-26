@@ -1,10 +1,6 @@
 @tool
 extends Resource
 class_name GameMode
-@export var test:bool:
-	set = set_test
-func set_test(_val):
-	test = false
 @export var waves:Array[Wave]
 func unpack_waves():
 	var waves_array = []

@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="GameMode" load_steps=7 format=3 uid="uid://di56oywi876w2"]
+[gd_resource type="Resource" script_class="GameMode" load_steps=12 format=3 uid="uid://di56oywi876w2"]
 
 [ext_resource type="Script" path="res://GameMode.gd" id="1_8bhq4"]
 [ext_resource type="Script" path="res://Wave.gd" id="2_13fv8"]
@@ -14,28 +14,67 @@ message = "Hello, welcome to the greatest game of all time"
 [sub_resource type="Resource" id="Resource_qwc00"]
 script = ExtResource("2_13fv8")
 delay = 4
-bonus = 100
+bonus = 10
 enemies = Array[int]([0, 0, 0, 0, 0, 0])
 times = Array[int]([0, 1000, 1000, 1000, 1000, 1000])
-message = "Wow, so unique, I know"
+message = "Press 1,2,3,4, or 5 to change towers, q to cancel"
 
 [sub_resource type="Resource" id="Resource_3vsx7"]
 script = ExtResource("2_13fv8")
 delay = 2
-bonus = 100
+bonus = 20
 enemies = Array[int]([0, 0, 0, 0, 0, 0, 0, 0])
 times = Array[int]([0, 1000, 1000, 1000, 1000, 1000, 1000, 1000])
-message = ""
+message = "Sniper do be OP tho"
 
 [sub_resource type="Resource" id="Resource_hsc00"]
 script = ExtResource("2_13fv8")
 delay = 4
-bonus = 150
+bonus = 25
 enemies = Array[int]([0, 0, 0, 0, 0, 0, 0, 0, 0, 0])
 times = Array[int]([0, 1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000, 1000])
-message = "no"
+message = "You make $1 * the tower's money bonus for every damage one does"
+
+[sub_resource type="Resource" id="Resource_qrb2q"]
+script = ExtResource("2_13fv8")
+delay = 2
+bonus = 100
+enemies = Array[int]([1, 1, 1, 1])
+times = Array[int]([0, 500, 500, 500])
+message = "New enemy alert! Speedies, fast but weak, scout carry fr"
+
+[sub_resource type="Resource" id="Resource_ytk24"]
+script = ExtResource("2_13fv8")
+delay = 2
+bonus = 100
+enemies = Array[int]([0, 1, 0, 1, 0, 1, 0, 1])
+times = Array[int]([0, 500, 1000, 500, 1000, 500, 1000, 500])
+message = "Oh no, big scary, speedies mixed with regular enemies"
+
+[sub_resource type="Resource" id="Resource_2uyci"]
+script = ExtResource("2_13fv8")
+delay = 2
+bonus = 100
+enemies = Array[int]([0, 0, 0, 0, 0, 1, 1, 1, 1, 1])
+times = Array[int]([1000, 1000, 1000, 1000, 1000, 500, 500, 500, 500, 500])
+message = "More of the same"
+
+[sub_resource type="Resource" id="Resource_kjfhd"]
+script = ExtResource("2_13fv8")
+delay = 2
+bonus = 100
+enemies = Array[int]([2, 2, 2, 2, 2])
+times = Array[int]([2000, 3000, 3000, 1000, 1000])
+message = "New enemy alert! x2 Zickey, tanky + fast need at least 3 scout to kill 1."
+
+[sub_resource type="Resource" id="Resource_ijyqr"]
+script = ExtResource("2_13fv8")
+delay = 2
+bonus = 100
+enemies = Array[int]([0, 0, 0, 1, 1, 1, 2, 2, 2])
+times = Array[int]([0, 1000, 1000, 500, 500, 500, 2000, 1000, 1000])
+message = "\"smorgasbord\"-Asher"
 
 [resource]
 script = ExtResource("1_8bhq4")
-test = false
-waves = Array[ExtResource("2_13fv8")]([SubResource("Resource_wpq7h"), SubResource("Resource_qwc00"), SubResource("Resource_3vsx7"), SubResource("Resource_hsc00")])
+waves = Array[ExtResource("2_13fv8")]([SubResource("Resource_wpq7h"), SubResource("Resource_qwc00"), SubResource("Resource_3vsx7"), SubResource("Resource_hsc00"), SubResource("Resource_qrb2q"), SubResource("Resource_ytk24"), SubResource("Resource_2uyci"), SubResource("Resource_kjfhd"), SubResource("Resource_ijyqr")])

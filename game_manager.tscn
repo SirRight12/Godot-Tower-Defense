@@ -70,6 +70,7 @@ offset_left = 28.8
 offset_right = -29.9521
 offset_bottom = -40.176
 grow_horizontal = 2
+mouse_filter = 1
 
 [node name="ColorRect" type="ColorRect" parent="Start"]
 custom_minimum_size = Vector2(100, 40)
